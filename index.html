@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이후빈 — Video Producer & AI Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@400;700;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08080C;--s:#0F0F16;--lime:#C8FF00;--vio:#7C3AFF;--cor:#FF4060;--cyn:#00E5FF;--wh:#F0F0F5;--mt:rgba(240,240,245,.45);--gl:rgba(255,255,255,.04);--gb:rgba(255,255,255,.08)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:#08080C}
+button.blime,button.bout{border:none;cursor:pointer;font-size:.7rem}
+
+body{background:#08080C!important;color:#F0F0F5!important;font-family:"Noto Sans KR",sans-serif;font-weight:400;overflow-x:hidden;cursor:none}
+.cdot{position:fixed;width:8px;height:8px;background:var(--lime);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.cring{position:fixed;width:32px;height:32px;border:1.5px solid var(--lime);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
+.cring.h{width:52px;height:52px}
+.blobs{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(80px)}
+.b1{width:600px;height:600px;background:var(--vio);top:-200px;left:-150px;opacity:.17;animation:bf 12s ease-in-out infinite}
+.b2{width:500px;height:500px;background:var(--lime);bottom:-100px;right:-100px;opacity:.08;animation:bf 12s ease-in-out -5s infinite}
+.b3{width:400px;height:400px;background:var(--cor);top:40%;right:20%;opacity:.10;animation:bf 12s ease-in-out -8s infinite}
+@keyframes bf{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.05)}66%{transform:translate(-20px,15px) scale(.97)}}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2.5rem;background:rgba(8,8,12,.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--gb)}
+.nlogo{font-family:"JetBrains Mono",monospace;font-size:.75rem;letter-spacing:.1em;color:var(--lime);text-decoration:none}
+.nlinks{display:flex;gap:2rem;list-style:none}
+.nlinks a{font-family:"JetBrains Mono",monospace;font-size:.65rem;letter-spacing:.12em;color:rgba(240,240,245,.5);text-decoration:none;transition:color .25s;text-transform:uppercase}
+.nlinks a:hover{color:var(--lime)}
+.nstat{display:flex;align-items:center;gap:.5rem;font-family:"JetBrains Mono",monospace;font-size:.6rem;letter-spacing:.1em;color:rgba(240,240,245,.5)}
+.sdot{width:6px;height:6px;border-radius:50%;background:#00E87A;box-shadow:0 0 8px #00E87A;animation:sp 2s infinite}
+@keyframes sp{0%,100%{opacity:1;box-shadow:0 0 8px #00E87A}50%{opacity:.5;box-shadow:0 0 3px #00E87A}}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 2.5rem 5rem;position:relative;z-index:1;overflow:hidden}
+.hey{display:inline-flex;align-items:center;gap:.5rem;background:var(--gl);border:1px solid var(--gb);backdrop-filter:blur(10px);padding:.4rem 1rem;font-family:"JetBrains Mono",monospace;font-size:.65rem;letter-spacing:.15em;color:var(--lime);text-transform:uppercase;border-radius:100px;margin-bottom:2.5rem;width:fit-content;opacity:0;animation:fu .8s .2s forwards}
+.hey::before{content:"▶";font-size:.5rem}
+.hh1{font-family:"Bebas Neue",sans-serif;font-size:clamp(4.5rem,12vw,10.5rem);line-height:.88;letter-spacing:.01em;margin-bottom:1.2rem;opacity:0;animation:fu .8s .35s forwards}
+.grad{background:linear-gradient(135deg,var(--lime) 0%,var(--cyn) 50%,var(--vio) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hko{font-family:"Noto Sans KR",sans-serif;font-weight:900;font-size:clamp(3rem,8vw,7rem);color:var(--wh);opacity:.05;position:absolute;top:50%;right:2.5rem;transform:translateY(-50%);pointer-events:none;writing-mode:vertical-rl;letter-spacing:-.02em;line-height:1}
+.hbottom{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;opacity:0;animation:fu .8s .55s forwards}
+.hdesc{font-size:.88rem;line-height:1.8;color:rgba(240,240,245,.7);max-width:400px}
+.hdesc strong{color:#F0F0F5;font-weight:700}
+.hbtns{display:flex;gap:.8rem;flex-shrink:0;flex-wrap:wrap}
+.blime{display:inline-flex;align-items:center;gap:.5rem;background:var(--lime);color:var(--bg);font-family:"JetBrains Mono",monospace;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 1.6rem;text-decoration:none;border-radius:6px;transition:transform .25s,box-shadow .25s;white-space:nowrap}
+.blime:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,255,0,.25)}
+.bout{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--gb);color:var(--wh);background:var(--gl);backdrop-filter:blur(10px);font-family:"JetBrains Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 1.6rem;text-decoration:none;border-radius:6px;transition:border-color .25s,transform .25s,color .25s;white-space:nowrap}
+.bout:hover{border-color:var(--lime);color:var(--lime);transform:translateY(-2px)}
+@keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.ticker{overflow:hidden;background:var(--lime);padding:.6rem 0;position:relative;z-index:1}
+.ticker-t{display:flex;gap:3rem;animation:tk 22s linear infinite;width:max-content}
+.ti{font-family:"Bebas Neue",sans-serif;font-size:.9rem;letter-spacing:.1em;color:var(--bg);white-space:nowrap}
+.ts{color:var(--bg);opacity:.35}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.card{background:var(--gl);border:1px solid var(--gb);backdrop-filter:blur(20px);border-radius:16px;padding:2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.card:hover{border-color:rgba(200,255,0,.2);transform:translateY(-2px)}
+.card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.03) 0%,transparent 50%);pointer-events:none}
+.chip{display:inline-flex;align-items:center;font-family:"JetBrains Mono",monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .7rem;border-radius:100px;margin-bottom:1.2rem}
+.cl{background:rgba(200,255,0,.12);color:var(--lime);border:1px solid rgba(200,255,0,.25)}
+.cv{background:rgba(124,58,255,.15);color:#A78BFA;border:1px solid rgba(124,58,255,.3)}
+.cc{background:rgba(255,64,96,.12);color:#FF8099;border:1px solid rgba(255,64,96,.25)}
+.cy{background:rgba(0,229,255,.1);color:var(--cyn);border:1px solid rgba(0,229,255,.25)}
+.lbl{font-family:"JetBrains Mono",monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,240,245,.5);margin-bottom:.6rem}
+.bnum{font-family:"Bebas Neue",sans-serif;line-height:1;background:linear-gradient(135deg,var(--lime),var(--cyn));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.bsub{font-family:"JetBrains Mono",monospace;font-size:.62rem;color:rgba(240,240,245,.5);margin-top:.3rem;-webkit-text-fill-color:rgba(240,240,245,.5)}
+.ctlg{font-family:"Bebas Neue",sans-serif;font-size:1.8rem;line-height:1.05;margin-bottom:.7rem;letter-spacing:.02em}
+.cbody{font-size:.82rem;line-height:1.8;color:rgba(240,240,245,.65)}
+.cbody strong{color:#F0F0F5;font-weight:700}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.tag{font-family:"JetBrains Mono",monospace;font-size:.58rem;letter-spacing:.08em;padding:.28rem .6rem;border-radius:4px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(240,240,245,.55);transition:background .25s,color .25s;white-space:nowrap}
+.card:hover .tag{background:rgba(200,255,0,.06);color:rgba(200,255,0,.8)}
+.sico{font-size:1.8rem;margin-bottom:.8rem}
+.sh{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.stitle{font-family:"Bebas Neue",sans-serif;font-size:clamp(2rem,4.5vw,3.5rem);letter-spacing:.03em;line-height:1}
+.stitle .g{background:linear-gradient(90deg,var(--lime),var(--cyn));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.snum{font-family:"JetBrains Mono",monospace;font-size:.62rem;color:rgba(240,240,245,.45);letter-spacing:.1em}
+#bento{padding:5rem 2.5rem;display:grid;grid-template-columns:repeat(12,1fr);gap:10px;position:relative;z-index:1}
+.ci{grid-column:span 7;min-height:220px}
+.csa{grid-column:span 2}
+.csb{grid-column:span 3}
+.csk1,.csk2,.csk3{grid-column:span 4}
+.cig{grid-column:span 5;background:linear-gradient(135deg,rgba(124,58,255,.15) 0%,rgba(255,64,96,.1) 100%);border-color:rgba(124,58,255,.25);display:flex;flex-direction:column;justify-content:flex-end;min-height:170px}
+.cai{grid-column:span 3;background:linear-gradient(135deg,rgba(200,255,0,.08) 0%,rgba(0,229,255,.05) 100%);border-color:rgba(200,255,0,.2);display:flex;flex-direction:column;justify-content:center;min-height:170px}
+.cex{grid-column:span 4;min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.igh{display:block;font-family:"Bebas Neue",sans-serif;font-size:2rem;background:linear-gradient(90deg,#A78BFA,#FF8099);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.igsub{font-family:"JetBrains Mono",monospace;font-size:.58rem;color:rgba(240,240,245,.45);letter-spacing:.08em;margin-top:.25rem}
+.igbtn{display:inline-flex;align-items:center;gap:.3rem;font-family:"JetBrains Mono",monospace;font-size:.6rem;letter-spacing:.1em;color:var(--lime);text-decoration:none;margin-top:.7rem}
+.igbtn::after{content:"↗"}
+.aibig{font-family:"Bebas Neue",sans-serif;font-size:2.8rem;line-height:1;background:linear-gradient(135deg,var(--lime),var(--cyn));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.4rem}
+#experience{padding:2rem 2.5rem 5rem;position:relative;z-index:1}
+.elist{display:flex;flex-direction:column;gap:8px}
+.ec{background:var(--gl);border:1px solid var(--gb);backdrop-filter:blur(20px);border-radius:14px;padding:1.6rem 2rem;display:grid;grid-template-columns:180px 1fr auto;gap:1.5rem;align-items:start;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.ec:hover{border-color:rgba(200,255,0,.2);transform:translateX(4px)}
+.ec.cur{border-color:rgba(200,255,0,.3);background:rgba(200,255,0,.03)}
+.ec::after{content:attr(data-n);position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-family:"Bebas Neue",sans-serif;font-size:4rem;line-height:1;color:rgba(255,255,255,.025);pointer-events:none}
+.ep{font-family:"JetBrains Mono",monospace;font-size:.58rem;letter-spacing:.12em;color:var(--lime);text-transform:uppercase;margin-bottom:.3rem}
+.eco{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:rgba(240,240,245,.5);line-height:1.4}
+.er{font-weight:700;font-size:.98rem;margin-bottom:.55rem;line-height:1.3;color:#F0F0F5}
+.ed{font-size:.78rem;line-height:1.75;color:rgba(240,240,245,.6)}
+.ebadge{display:inline-flex;align-items:center;gap:.3rem;font-family:"JetBrains Mono",monospace;font-size:.55rem;letter-spacing:.08em;padding:.2rem .6rem;border-radius:100px;white-space:nowrap;flex-shrink:0;align-self:start;margin-top:.2rem}
+.enow{background:rgba(0,232,122,.1);color:#00E87A;border:1px solid rgba(0,232,122,.25)}
+.eprev{background:rgba(255,255,255,.05);color:rgba(240,240,245,.5);border:1px solid rgba(255,255,255,.1)}
+.edot{width:5px;height:5px;border-radius:50%;background:#00E87A;animation:sp 2s infinite}
+#works{padding:2rem 2.5rem 5rem;position:relative;z-index:1}
+.ws{overflow-x:auto;padding-bottom:1rem;-webkit-overflow-scrolling:touch}
+.ws::-webkit-scrollbar{height:3px}
+.ws::-webkit-scrollbar-track{background:var(--gl)}
+.ws::-webkit-scrollbar-thumb{background:var(--lime);border-radius:2px}
+.wr{display:flex;gap:10px;width:max-content;padding-bottom:4px}
+.wc{width:300px;flex-shrink:0;background:var(--gl);border:1px solid var(--gb);backdrop-filter:blur(20px);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .3s,border-color .3s}
+.wc:hover{transform:translateY(-6px) scale(1.01);border-color:rgba(200,255,0,.25)}
+.wth{height:170px;background:var(--s);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.wg{position:absolute;inset:0;opacity:.55}
+.wg1{background:linear-gradient(135deg,rgba(124,58,255,.4),transparent)}
+.wg2{background:linear-gradient(135deg,rgba(255,64,96,.35),transparent)}
+.wg3{background:linear-gradient(135deg,rgba(0,229,255,.3),transparent)}
+.wg4{background:linear-gradient(135deg,rgba(200,255,0,.25),transparent)}
+.wtx{font-family:"Bebas Neue",sans-serif;font-size:4rem;color:rgba(255,255,255,.04);transition:color .4s,transform .4s;position:relative;z-index:1}
+.wc:hover .wtx{color:rgba(200,255,0,.07);transform:scale(1.08)}
+.wpl{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.7);opacity:0;transition:opacity .3s,transform .3s;z-index:2;width:44px;height:44px;border:1.5px solid rgba(255,255,255,.5);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.wc:hover .wpl{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.wpl svg{fill:white;width:13px;margin-left:2px}
+.wi{padding:1rem 1.2rem}
+.wtype{font-family:"JetBrains Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--lime);margin-bottom:.3rem}
+.wtitle{font-weight:700;font-size:.88rem;margin-bottom:.25rem;line-height:1.3;color:#F0F0F5}
+.wyear{font-family:"JetBrains Mono",monospace;font-size:.55rem;color:rgba(240,240,245,.45)}
+#skills{padding:2rem 2.5rem 5rem;position:relative;z-index:1}
+.skgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.skc{background:var(--gl);border:1px solid var(--gb);backdrop-filter:blur(20px);border-radius:14px;padding:1.5rem;transition:border-color .3s,transform .3s}
+.skc:hover{border-color:rgba(200,255,0,.2);transform:translateY(-2px)}
+.skcat{font-family:"JetBrains Mono",monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.2rem}
+.sklist{display:flex;flex-direction:column;gap:.7rem}
+.skrow{display:flex;flex-direction:column;gap:.3rem}
+.skn{font-size:.78rem;color:#F0F0F5}
+.skbar{height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.skfill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--lime),var(--cyn));transition:width 1.2s ease}
+#contact{padding:2rem 2.5rem 7rem;position:relative;z-index:1}
+.cbox{background:var(--gl);border:1px solid var(--gb);backdrop-filter:blur(30px);border-radius:20px;padding:3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;overflow:hidden}
+.cbox::before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,255,.15) 0%,transparent 70%);bottom:-200px;right:-100px;pointer-events:none}
+.ch2{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.8rem,5.5vw,4.8rem);line-height:.92;letter-spacing:.02em;margin-bottom:1.3rem}
+.ch2 .g{background:linear-gradient(135deg,var(--lime),var(--cyn));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.csub{font-size:.82rem;line-height:1.8;color:rgba(240,240,245,.6);margin-bottom:2rem;max-width:340px}
+.clinks{display:flex;flex-direction:column;gap:.7rem}
+.clink{display:flex;align-items:center;gap:.9rem;text-decoration:none;background:rgba(255,255,255,.04);border:1px solid var(--gb);border-radius:10px;padding:.9rem 1.1rem;transition:border-color .25s,background .25s;color:var(--wh)}
+.clink:hover{border-color:var(--lime);background:rgba(200,255,0,.04)}
+.cico{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.iig{background:linear-gradient(135deg,#833AB4,#FD1D1D,#F56040)}
+.iml{background:rgba(200,255,0,.15)}
+.iph{background:rgba(0,229,255,.15)}
+.clbl{font-family:"JetBrains Mono",monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,240,245,.45);margin-bottom:.1rem}
+.cval{font-size:.83rem;font-weight:700;color:#F0F0F5}
+.cr2{display:flex;flex-direction:column;gap:1.5rem}
+.avail{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,232,122,.08);border:1px solid rgba(0,232,122,.2);border-radius:100px;padding:.45rem .9rem;font-family:"JetBrains Mono",monospace;font-size:.6rem;letter-spacing:.1em;color:#00E87A;width:fit-content}
+.adot{width:6px;height:6px;border-radius:50%;background:#00E87A;box-shadow:0 0 6px #00E87A;animation:sp 2s infinite}
+.cquote{font-size:1.15rem;font-weight:700;line-height:1.6;color:#F0F0F5}
+.cquote span{color:var(--lime)}
+footer{padding:1.4rem 2.5rem;border-top:1px solid var(--gb);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;flex-wrap:wrap;gap:.5rem}
+.ft{font-family:"JetBrains Mono",monospace;font-size:.55rem;letter-spacing:.1em;color:rgba(240,240,245,.3)}
+@media(max-width:960px){nav{padding:1rem 1.5rem}.nlinks{display:none}#hero{padding:0 1.5rem 4rem}.hko{display:none}#bento{grid-template-columns:1fr 1fr;padding:3rem 1.5rem;gap:8px}.ci{grid-column:span 2}.csa,.csb,.csk1,.csk2,.csk3{grid-column:span 1}.cig,.cai,.cex{grid-column:span 2}#experience,#works,#skills,#contact{padding:2rem 1.5rem 3.5rem}.ec{grid-template-columns:1fr;gap:.6rem}.ec::after{display:none}.skgrid{grid-template-columns:1fr 1fr}.cbox{grid-template-columns:1fr;padding:2rem;gap:2rem}footer{padding:1.2rem 1.5rem}}
+@media(max-width:600px){.skgrid{grid-template-columns:1fr}#bento{grid-template-columns:1fr;padding:2.5rem 1rem}.ci,.csa,.csb,.csk1,.csk2,.csk3,.cig,.cai,.cex{grid-column:span 1}}
+
+.wlink-wrap{display:block;text-decoration:none;color:inherit;height:100%}
+.woverlay{position:absolute;inset:0;background:rgba(8,8,12,.82);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:3}
+.wc:hover .woverlay{opacity:1}
+.woverlay-inner{display:flex;align-items:center;gap:.8rem}
+.woverlay-icon{width:40px;height:40px;border:1.5px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.woverlay-txt{font-family:"JetBrains Mono",monospace;font-size:.7rem;letter-spacing:.1em;color:#F0F0F5;text-transform:uppercase}
+.woverlay-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.08em;color:#F0F0F5;text-decoration:none;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:.4rem .8rem;transition:background .2s,border-color .2s;white-space:nowrap}
+.woverlay-btn:hover{background:rgba(200,255,0,.15);border-color:rgba(200,255,0,.4);color:var(--lime)}
+.wbtn{display:flex;align-items:center;justify-content:space-between;margin-top:.7rem;padding:.5rem .7rem;background:rgba(200,255,0,.06);border:1px solid rgba(200,255,0,.15);border-radius:6px;font-family:"JetBrains Mono",monospace;font-size:.6rem;letter-spacing:.08em;color:rgba(200,255,0,.9);transition:background .2s}
+.wlink-wrap:hover .wbtn{background:rgba(200,255,0,.12)}
+.warrow{font-size:.8rem}
+.wmulti-btns{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.wbtn-sm{font-family:"JetBrains Mono",monospace;font-size:.55rem;letter-spacing:.06em;color:rgba(200,255,0,.85);text-decoration:none;background:rgba(200,255,0,.06);border:1px solid rgba(200,255,0,.15);border-radius:4px;padding:.3rem .6rem;transition:background .2s,border-color .2s;white-space:nowrap}
+.wbtn-sm:hover{background:rgba(200,255,0,.15);border-color:rgba(200,255,0,.35)}
+</style>
+</head>
+<body>
+<div class="cdot" id="cd"></div>
+<div class="cring" id="cr"></div>
+<div class="blobs"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<nav>
+  <a href="#hero" class="nlogo">HB ✦</a>
+  <ul class="nlinks">
+    <li><a href="javascript:void(0)" onclick="document.getElementById('bento').scrollIntoView({behavior:'smooth'})">About</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">Career</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('works').scrollIntoView({behavior:'smooth'})">Works</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">Skills</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a></li>
+  </ul>
+  <div class="nstat"><span class="sdot"></span>available for work</div>
+</nav>
+<section id="hero">
+  <p class="hko" aria-hidden="true">이후빈</p>
+  <div class="hey">Video PD &#xD7; Visual Storyteller &#xD7; AI Creator</div>
+  <h1 class="hh1"><span class="grad">VISUAL</span><br>STORY<br>TELLER</h1>
+  <div class="hbottom">
+    <p class="hdesc">
+      <strong>"기획부터 AI까지,<br>영상의 모든 순간을 책임집니다."</strong><br><br>
+      총 경력 3년 9개월의 올라운드 영상 PD.<br>
+      AI 툴로 광고 촬영비 <strong>80% 절감</strong> 달성.
+    </p>
+    <div class="hbtns">
+      <button onclick="document.getElementById('works').scrollIntoView({behavior:'smooth'})" class="blime">Works 보기 ↓</button>
+      <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="bout">Contact →</button>
+    </div>
+  </div>
+</section>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-t">
+    <span class="ti">VIDEO PRODUCTION</span><span class="ts"> &#x2736; </span>
+    <span class="ti">AI CONTENT</span><span class="ts"> &#x2736; </span>
+    <span class="ti">VEO 3</span><span class="ts"> &#x2736; </span>
+    <span class="ti">NANO BANANA</span><span class="ts"> &#x2736; </span>
+    <span class="ti">KLING AI</span><span class="ts"> &#x2736; </span>
+    <span class="ti">BRAND FILM</span><span class="ts"> &#x2736; </span>
+    <span class="ti">VISUAL STORYTELLING</span><span class="ts"> &#x2736; </span>
+    <span class="ti">SNS &#xCC44;&#xB110; &#xC6B4;&#xC601;</span><span class="ts"> &#x2736; </span>
+    <span class="ti">SCRIPT AI</span><span class="ts"> &#x2736; </span>
+    <span class="ti">VIDEO PRODUCTION</span><span class="ts"> &#x2736; </span>
+    <span class="ti">AI CONTENT</span><span class="ts"> &#x2736; </span>
+    <span class="ti">VEO 3</span><span class="ts"> &#x2736; </span>
+    <span class="ti">NANO BANANA</span><span class="ts"> &#x2736; </span>
+    <span class="ti">KLING AI</span><span class="ts"> &#x2736; </span>
+    <span class="ti">BRAND FILM</span><span class="ts"> &#x2736; </span>
+    <span class="ti">VISUAL STORYTELLING</span><span class="ts"> &#x2736; </span>
+    <span class="ti">SNS &#xCC44;&#xB110; &#xC6B4;&#xC601;</span><span class="ts"> &#x2736; </span>
+    <span class="ti">SCRIPT AI</span><span class="ts"> &#x2736; </span>
+  </div>
+</div>
+<section id="bento">
+  <div class="card ci reveal">
+    <div class="chip cl">About me</div>
+    <p class="cbody" style="font-size:.88rem">총 경력 <strong>3년 9개월</strong>의 올라운드 영상 PD. 기획&#xB7;촬영&#xB7;편집을 아우르며 브랜드 SNS 콘텐츠부터 AI 영상까지 다양한 장르의 영상 제작 경험 보유.<br><br>Veo 3, Nano banana 등 AI 툴을 실무 도입해 <strong>광고 제작 비용 80% 절감</strong> 성과 달성. 1인 PD 기여도 100%, AI 활용도 90%.</p>
+    <div class="tags">
+      <span class="tag">Premiere Pro</span><span class="tag">After Effects</span><span class="tag">Veo 3</span><span class="tag">Nano banana</span><span class="tag">Kling AI</span><span class="tag">ChatGPT/Claude</span><span class="tag">DSLR/짐벌</span><span class="tag">Figma</span>
+    </div>
+  </div>
+  <div class="card csa reveal d1" style="display:flex;flex-direction:column;justify-content:flex-end">
+    <div class="lbl">총 경력</div>
+    <div class="bnum" style="font-size:3rem;line-height:1.1">3년<br>9개월</div>
+    <div class="bsub">올라운드 영상 PD</div>
+  </div>
+  <div class="card csb reveal d2" style="display:flex;flex-direction:column;justify-content:flex-end">
+    <div class="lbl">촬영비 절감</div>
+    <div class="bnum" style="font-size:4rem">80<span style="font-size:2rem">%</span></div>
+    <div class="bsub">AI 툴 도입 성과</div>
+  </div>
+  <div class="card csk1 reveal">
+    <div class="chip cv">01</div>
+    <div class="sico">&#x1F3AC;</div>
+    <h3 class="ctlg">Video<br>Producer</h3>
+    <p class="cbody">기획 &#x2192; 촬영 &#x2192; 편집 &#x2192; 납품 원스톱</p>
+  </div>
+  <div class="card csk2 reveal d1">
+    <div class="chip cl">02</div>
+    <div class="sico">&#x1F916;</div>
+    <h3 class="ctlg">AI Content<br>Creator</h3>
+    <p class="cbody">AI 툴로 퀄리티&#x2191; 비용&#x2193; 동시 달성</p>
+  </div>
+  <div class="card csk3 reveal d2">
+    <div class="chip cc">03</div>
+    <div class="sico">&#x2728;</div>
+    <h3 class="ctlg">Visual<br>Storyteller</h3>
+    <p class="cbody">어떤 포맷에서도 핵심 내러티브 설계</p>
+  </div>
+  <div class="card cig reveal">
+    <div class="lbl">AI SNS</div>
+    <a href="https://instagram.com/aihubin" target="_blank" class="igh">@aihubin</a>
+    <div class="igsub">AI 영상&#xB7;이미지 전문 인스타그램 채널</div>
+    <a href="https://instagram.com/aihubin" target="_blank" class="igbtn">바로가기</a>
+  </div>
+  <div class="card cai reveal d1">
+    <div class="chip cy">AI Native</div>
+    <div class="aibig">AI<br>FIRST</div>
+    <p class="cbody" style="font-size:.72rem">1인 PD 기여도 100%<br>AI 활용도 90%</p>
+  </div>
+  <div class="card cex reveal d2">
+    <div class="lbl">개인 YouTube</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;background:linear-gradient(135deg,var(--cor),var(--vio));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem">후스tv</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--mt)">구독자 1,320명 &#xB7; 영상 267개</div>
+    <a href="https://youtube.com/@HUSTV_official" target="_blank" style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--lime);text-decoration:none;margin-top:.6rem;display:inline-flex;align-items:center;gap:.3rem">보러가기&#x2197;</a>
+  </div>
+</section>
+<section id="experience">
+  <div class="sh reveal">
+    <h2 class="stitle">CAREER <span class="g">HISTORY</span></h2>
+    <span class="snum">// 경력사항 (최신순)</span>
+  </div>
+  <div class="elist">
+    <div class="ec cur reveal" data-n="01">
+      <div>
+        <div class="ep">2025.02 ~ 현재</div>
+        <div class="eco">닥터블릿헬스케어</div>
+      </div>
+      <div>
+        <h3 class="er">Video Producer (올라운드)</h3>
+        <p class="ed">헬스케어 브랜드 광고 영상 전 과정 기획&#xB7;촬영&#xB7;편집. Veo 3 + Nano banana 도입으로 촬영비 80% 절감. 연 매출 7억 4,700만원 달성 직접 기여. AI 영상 제작 프로세스 사내 교육 진행. dr.blet, POOENG, Flonéa, 소우코우 등 다수 브랜드 담당.</p>
+        <div class="tags" style="margin-top:.8rem">
+          <span class="tag" style="color:var(--lime);border-color:rgba(200,255,0,.25)">Veo 3</span>
+          <span class="tag" style="color:var(--lime);border-color:rgba(200,255,0,.25)">Nano banana</span>
+          <span class="tag">광고 영상</span><span class="tag">AI 워크플로우</span><span class="tag">촬영비 80% 절감</span>
+        </div>
+      </div>
+      <div class="ebadge enow"><span class="edot"></span>재직중</div>
+    </div>
+    <div class="ec reveal d1" data-n="02">
+      <div>
+        <div class="ep">2024.01 ~ 2025.01</div>
+        <div class="eco">마일스톤컴퍼니</div>
+      </div>
+      <div>
+        <h3 class="er">Video Producer</h3>
+        <p class="ed">lululemon Korea 공식 Instagram 운영. 월 4건 콘텐츠 기획&#xB7;촬영&#xB7;편집, KPI 200% 달성. Y FUND YouTube 운영 (평균 조회수 700회). 로컬 앰버서더 협업, 글로벌 브랜드 로컬 콘텐츠 제작. 기여도 80~90%.</p>
+        <div class="tags" style="margin-top:.8rem">
+          <span class="tag">lululemon Korea</span><span class="tag">KPI 200%</span><span class="tag">SNS 운영</span><span class="tag">YouTube</span>
+        </div>
+      </div>
+      <div class="ebadge eprev">퇴사</div>
+    </div>
+    <div class="ec reveal d1" data-n="03">
+      <div>
+        <div class="ep">2023.05 ~ 2023.11</div>
+        <div class="eco">데일리뉴스</div>
+      </div>
+      <div>
+        <h3 class="er">Video Producer</h3>
+        <p class="ed">뉴스&#xB7;시사 유튜브 채널 3개 동시 운영 (데일리뉴스, 종합시사매거진, 청색경제뉴스). 뉴스&#xB7;인터뷰&#xB7;애니메이션&#xB7;인포그래픽 등 다양한 포맷 제작. ZOOM 뉴스 검색 제휴 달성. 매거진 매출 87%&#x2191;. 기여도 100%.</p>
+        <div class="tags" style="margin-top:.8rem">
+          <span class="tag">뉴스 영상</span><span class="tag">애니메이션</span><span class="tag">인포그래픽</span><span class="tag">채널 3개 동시</span>
+        </div>
+      </div>
+      <div class="ebadge eprev">퇴사</div>
+    </div>
+    <div class="ec reveal d2" data-n="04">
+      <div>
+        <div class="ep">2022.06 ~ 2022.12</div>
+        <div class="eco">엔피프틴파트너스</div>
+      </div>
+      <div>
+        <h3 class="er">Accelerator (콘텐츠 기획)</h3>
+        <p class="ed">스타트업 액셀러레이터 — 소상공인&#xB7;관광&#xB7;전통문화 분야. 강한소상공인 성장 지원사업 매출 200% 달성. 한국관광공사 이음주간행사 관광 콘텐츠 기획&#xB7;운영. KCDF 전통문화 청년창업 사업 브랜딩 지원.</p>
+        <div class="tags" style="margin-top:.8rem">
+          <span class="tag">스타트업 지원</span><span class="tag">콘텐츠 기획</span><span class="tag">매출 200%</span>
+        </div>
+      </div>
+      <div class="ebadge eprev">퇴사</div>
+    </div>
+    <div class="ec reveal d2" data-n="05">
+      <div>
+        <div class="ep">2021.12 ~ 2022.06</div>
+        <div class="eco">제이비컴스컴퍼니</div>
+      </div>
+      <div>
+        <h3 class="er">Video Planner <span style="font-size:.75rem;color:var(--mt);font-weight:400">(첫 커리어)</span></h3>
+        <p class="ed">신한라이프 YouTube 채널 콘텐츠 기획 및 운영 보조. 구독자 목표 8만 명 달성, KPI 200%. 골목길 힙스터&#xB7;라이프로그 기획&#xB7;편집 보조. YouTube&#xB7;Instagram&#xB7;Facebook&#xB7;Blog&#xB7;KakaoChannel 멀티채널 운영.</p>
+        <div class="tags" style="margin-top:.8rem">
+          <span class="tag">신한라이프</span><span class="tag">YouTube</span><span class="tag">KPI 200%</span><span class="tag">멀티채널</span>
+        </div>
+      </div>
+      <div class="ebadge eprev">첫 회사</div>
+    </div>
+  </div>
+</section>
+<section id="works">
+  <div class="sh reveal">
+    <h2 class="stitle">SELECTED <span class="g">WORKS</span></h2>
+    <span class="snum">// 포트폴리오 — 클릭하면 영상을 볼 수 있어요</span>
+  </div>
+  <div class="ws">
+    <div class="wr">
+
+      <!-- AI VIDEO -->
+      <div class="wc reveal">
+        <a href="https://instagram.com/aihubin" target="_blank" class="wlink-wrap">
+          <div class="wth">
+            <div class="wg wg1"></div>
+            <div class="wtx">AI</div>
+            <div class="woverlay">
+              <div class="woverlay-inner">
+                <div class="woverlay-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20"><path fill="white" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </div>
+                <span class="woverlay-txt">Instagram 보기</span>
+              </div>
+            </div>
+          </div>
+          <div class="wi">
+            <div class="wtype">AI Video &amp; Image</div>
+            <div class="wtitle">AI 영상·이미지 제작 @aihubin</div>
+            <div class="wyear">Veo 3 · Kling AI · Nano banana · 2025~현재</div>
+            <div class="wbtn"><span>Instagram 바로가기</span><span class="warrow">↗</span></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- 닥터블릿 -->
+      <div class="wc reveal d1">
+        <a href="https://www.youtube.com/@HuBin96" target="_blank" class="wlink-wrap">
+          <div class="wth">
+            <div class="wg wg2"></div>
+            <div class="wtx">HLT</div>
+            <div class="woverlay">
+              <div class="woverlay-inner">
+                <div class="woverlay-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20"><path fill="white" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </div>
+                <span class="woverlay-txt">YouTube 영상 보기</span>
+              </div>
+            </div>
+          </div>
+          <div class="wi">
+            <div class="wtype">Healthcare Brand Ad</div>
+            <div class="wtitle">닥터블릿헬스케어 광고 캠페인</div>
+            <div class="wyear">dr.blet · POOENG · Flonéa · 2025~현재</div>
+            <div class="wbtn"><span>YouTube 영상 보기</span><span class="warrow">↗</span></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- lululemon -->
+      <div class="wc reveal d2">
+        <div class="wth">
+          <div class="wg wg3"></div>
+          <div class="wtx">LULU</div>
+          <div class="woverlay wmulti">
+            <div class="woverlay-inner" style="flex-direction:column;gap:.6rem">
+              <a href="https://www.instagram.com/lululemon_kr" target="_blank" class="woverlay-btn">
+                <svg viewBox="0 0 24 24" width="14" height="14"><path fill="white" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                롤루레몬KR IG
+              </a>
+              <a href="https://www.youtube.com/@yfund_official" target="_blank" class="woverlay-btn">
+                <svg viewBox="0 0 24 24" width="14" height="14"><path fill="white" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Y FUND YouTube
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="wi">
+          <div class="wtype">Global Brand SNS</div>
+          <div class="wtitle">lululemon Korea · Y FUND YouTube</div>
+          <div class="wyear">KPI 200% · 평균 조회수 700회 · 2024</div>
+          <div class="wmulti-btns">
+            <a href="https://www.instagram.com/lululemon_kr" target="_blank" class="wbtn-sm">롤루레몬KR IG ↗</a>
+            <a href="https://www.youtube.com/@yfund_official" target="_blank" class="wbtn-sm">Y FUND YT ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 데일리뉴스 -->
+      <div class="wc reveal d3">
+        <div class="wth">
+          <div class="wg wg4"></div>
+          <div class="wtx">NEWS</div>
+          <div class="woverlay wmulti">
+            <div class="woverlay-inner" style="flex-direction:column;gap:.6rem">
+              <a href="https://www.youtube.com/@dailynews_official" target="_blank" class="woverlay-btn">
+                <svg viewBox="0 0 24 24" width="14" height="14"><path fill="white" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                데일리뉴스
+              </a>
+              <a href="https://www.youtube.com/@sisamagazine" target="_blank" class="woverlay-btn">
+                <svg viewBox="0 0 24 24" width="14" height="14"><path fill="white" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                종합시사매거진
+              </a>
+              <a href="https://www.youtube.com/@greennews" target="_blank" class="woverlay-btn">
+                <svg viewBox="0 0 24 24" width="14" height="14"><path fill="white" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                청색경제뉴스
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="wi">
+          <div class="wtype">News · Documentary</div>
+          <div class="wtitle">데일리뉴스 유튜브 채널 3개 동시 운영</div>
+          <div class="wyear">뉴스 · 인포그래픽 · 애니메이션 · 2023</div>
+          <div class="wmulti-btns">
+            <a href="https://www.youtube.com/@dailynews_official" target="_blank" class="wbtn-sm">데일리뉴스 ↗</a>
+            <a href="https://www.youtube.com/@sisamagazine" target="_blank" class="wbtn-sm">시사매거진 ↗</a>
+            <a href="https://www.youtube.com/@greennews" target="_blank" class="wbtn-sm">청색경제 ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 신한라이프 -->
+      <div class="wc reveal d3">
+        <a href="https://www.youtube.com/@shinhanlife" target="_blank" class="wlink-wrap">
+          <div class="wth">
+            <div class="wg wg1"></div>
+            <div class="wtx">LIFE</div>
+            <div class="woverlay">
+              <div class="woverlay-inner">
+                <div class="woverlay-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20"><path fill="white" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </div>
+                <span class="woverlay-txt">YouTube 바로보기</span>
+              </div>
+            </div>
+          </div>
+          <div class="wi">
+            <div class="wtype">Finance Brand YouTube</div>
+            <div class="wtitle">신한라이프 YouTube 채널</div>
+            <div class="wyear">구독자 8만 · KPI 200% · 2021~2022</div>
+            <div class="wbtn"><span>YouTube 바로보기</span><span class="warrow">↗</span></div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section id="skills">
+  <div class="sh reveal">
+    <h2 class="stitle">SKILLS <span class="g">&amp; TOOLS</span></h2>
+    <span class="snum">// 영상 제작 역량 × AI 기술의 완성형 스택</span>
+  </div>
+  <div class="skgrid">
+    <div class="skc reveal">
+      <div class="skcat" style="color:var(--lime)">Video &amp; Editing</div>
+      <div class="sklist">
+        <div class="skrow"><div class="skn">Adobe Premiere Pro</div><div class="skbar"><div class="skfill" data-w="95"></div></div></div>
+        <div class="skrow"><div class="skn">Adobe After Effects</div><div class="skbar"><div class="skfill" data-w="80"></div></div></div>
+        <div class="skrow"><div class="skn">DSLR / 짐벌</div><div class="skbar"><div class="skfill" data-w="90"></div></div></div>
+      </div>
+    </div>
+    <div class="skc reveal d1">
+      <div class="skcat" style="color:#A78BFA">AI Tools &#x2605;</div>
+      <div class="sklist">
+        <div class="skrow"><div class="skn">Veo 3</div><div class="skbar"><div class="skfill" data-w="92"></div></div></div>
+        <div class="skrow"><div class="skn">Nano banana</div><div class="skbar"><div class="skfill" data-w="95"></div></div></div>
+        <div class="skrow"><div class="skn">Kling AI</div><div class="skbar"><div class="skfill" data-w="75"></div></div></div>
+        <div class="skrow"><div class="skn">ChatGPT / Claude</div><div class="skbar"><div class="skfill" data-w="90"></div></div></div>
+      </div>
+    </div>
+    <div class="skc reveal d2">
+      <div class="skcat" style="color:var(--cyn)">Design &amp; Graphics</div>
+      <div class="sklist">
+        <div class="skrow"><div class="skn">Adobe Photoshop</div><div class="skbar"><div class="skfill" data-w="80"></div></div></div>
+        <div class="skrow"><div class="skn">Adobe Illustrator</div><div class="skbar"><div class="skfill" data-w="65"></div></div></div>
+        <div class="skrow"><div class="skn">Figma / Notion</div><div class="skbar"><div class="skfill" data-w="78"></div></div></div>
+      </div>
+    </div>
+    <div class="skc reveal d3">
+      <div class="skcat" style="color:#FF8099">SNS / Platform</div>
+      <div class="sklist">
+        <div class="skrow"><div class="skn">YouTube</div><div class="skbar"><div class="skfill" data-w="90"></div></div></div>
+        <div class="skrow"><div class="skn">Instagram / Reels</div><div class="skbar"><div class="skfill" data-w="92"></div></div></div>
+        <div class="skrow"><div class="skn">TikTok / Shorts</div><div class="skbar"><div class="skfill" data-w="75"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="cbox reveal">
+    <div>
+      <h2 class="ch2">LET'S<br><span class="g">MAKE</span><br>SOMETHING</h2>
+      <p class="csub">새 프로젝트, 협업 제안, 아니면 그냥 반가운 인사도 환영해요.</p>
+      <div class="clinks">
+        <a href="https://instagram.com/aihubin" target="_blank" class="clink">
+          <div class="cico iig">&#x1F4F7;</div>
+          <div><div class="clbl">AI SNS</div><div class="cval">instagram.com/aihubin</div></div>
+        </a>
+        <a href="mailto:gnqls96@gmail.com" class="clink">
+          <div class="cico iml">&#x2709;&#xFE0F;</div>
+          <div><div class="clbl">Email</div><div class="cval">gnqls96@gmail.com</div></div>
+        </a>
+        <a href="tel:010-6626-9374" class="clink">
+          <div class="cico iph">&#x1F4F1;</div>
+          <div><div class="clbl">Tel</div><div class="cval">010-6626-9374</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="cr2">
+      <div class="avail"><span class="adot"></span>현재 새 프로젝트 가능 &#xB7; Seoul, KR</div>
+      <p class="cquote">"Show &amp; Prove &#x2014;<br><span>말이 아닌 결과로</span><br>증명합니다."</p>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--mt);line-height:1.9;margin-top:.5rem">동국대학교 국사학과<br>MAUMTHON AI 아이디어톤 3위 (2022)<br>GTQ 1급 &#xB7; 워드프로세서 1급<br>그린컴퓨터아카데미 영상편집 수료</div>
+    </div>
+  </div>
+</section>
+<footer>
+  <p class="ft">&#xa9; 2026 이후빈 Lee Hubin</p>
+  <p class="ft">Video PD &#xB7; Visual Storyteller &#xB7; AI Content Creator</p>
+  <p class="ft">Seoul, South Korea &#x2736;</p>
+</footer>
+<script>
+const cd=document.getElementById("cd"),cr=document.getElementById("cr");
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+"px";cd.style.top=my+"px"});
+(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;cr.style.left=rx+"px";cr.style.top=ry+"px";requestAnimationFrame(loop)})();
+document.querySelectorAll("a,button,.wc,.card,.ec,.skc").forEach(el=>{
+  el.addEventListener("mouseenter",()=>cr.classList.add("h"));
+  el.addEventListener("mouseleave",()=>cr.classList.remove("h"));
+});
+const obs=new IntersectionObserver(e=>e.forEach(i=>{if(i.isIntersecting)i.target.classList.add("vis")}),{threshold:.06});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+const barObs=new IntersectionObserver(e=>e.forEach(en=>{
+  if(en.isIntersecting){
+    en.target.querySelectorAll(".skfill").forEach(b=>{
+      const w=b.getAttribute("data-w")+"%";
+      b.style.width="0";
+      setTimeout(()=>b.style.width=w,150);
+    });
+    barObs.unobserve(en.target);
+  }
+}),{threshold:.2});
+document.querySelectorAll(".skc").forEach(el=>barObs.observe(el));
+const secs=document.querySelectorAll("section[id]");
+const links=document.querySelectorAll(".nlinks a");
+window.addEventListener("scroll",()=>{
+  let cur="";
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-200)cur=s.id});
+  links.forEach(a=>{a.style.color=a.getAttribute("href")==="#"+cur?"var(--lime)":"";});
+});
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ADMIN SYSTEM
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const ADMIN_PW = "0331";
+let adminMode = false;
+let logoClickCount = 0;
+let logoClickTimer = null;
+
+// 로고 3번 클릭하면 어드민 로그인
+document.querySelector(".nlogo").addEventListener("click", function(e){
+  e.preventDefault();
+  logoClickCount++;
+  clearTimeout(logoClickTimer);
+  logoClickTimer = setTimeout(()=>{ logoClickCount=0; }, 1500);
+  if(logoClickCount >= 3){
+    logoClickCount = 0;
+    if(adminMode){ exitAdmin(); }
+    else { showAdminLogin(); }
+  }
+});
+
+function showAdminLogin(){
+  const overlay = document.createElement("div");
+  overlay.id = "admin-login";
+  overlay.style.cssText = `
+    position:fixed;inset:0;background:rgba(8,8,12,.92);backdrop-filter:blur(20px);
+    z-index:99999;display:flex;align-items:center;justify-content:center;
+  `;
+  overlay.innerHTML = `
+    <div style="background:#0F0F16;border:1px solid rgba(200,255,0,.25);border-radius:20px;padding:2.5rem;width:320px;text-align:center;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;background:linear-gradient(135deg,#C8FF00,#00E5FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem">ADMIN</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:rgba(240,240,245,.4);letter-spacing:.15em;text-transform:uppercase;margin-bottom:2rem">비밀번호를 입력하세요</div>
+      <input id="admin-pw-input" type="password" placeholder="••••"
+        style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.9rem 1rem;color:#F0F0F5;font-family:'JetBrains Mono',monospace;font-size:1.2rem;text-align:center;letter-spacing:.3em;outline:none;margin-bottom:1rem;"
+      />
+      <div style="display:flex;gap:.6rem;">
+        <button onclick="checkAdminPw()" style="flex:1;background:#C8FF00;color:#08080C;border:none;border-radius:8px;padding:.85rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.1em;cursor:pointer;">입장</button>
+        <button onclick="document.getElementById('admin-login').remove()" style="flex:1;background:rgba(255,255,255,.05);color:#F0F0F5;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.85rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;cursor:pointer;">취소</button>
+      </div>
+      <div id="admin-err" style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#FF4060;margin-top:.8rem;height:.8rem;"></div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  setTimeout(()=>document.getElementById("admin-pw-input").focus(), 100);
+  document.getElementById("admin-pw-input").addEventListener("keydown", e=>{ if(e.key==="Enter") checkAdminPw(); });
+}
+
+function checkAdminPw(){
+  const val = document.getElementById("admin-pw-input").value;
+  if(val === ADMIN_PW){
+    document.getElementById("admin-login").remove();
+    enterAdmin();
+  } else {
+    document.getElementById("admin-err").textContent = "비밀번호가 틀렸습니다";
+    document.getElementById("admin-pw-input").value = "";
+    document.getElementById("admin-pw-input").focus();
+  }
+}
+
+function enterAdmin(){
+  adminMode = true;
+
+  // 어드민 툴바
+  const bar = document.createElement("div");
+  bar.id = "admin-bar";
+  bar.style.cssText = `
+    position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);
+    background:#0F0F16;border:1px solid rgba(200,255,0,.35);border-radius:100px;
+    padding:.6rem 1.2rem;display:flex;align-items:center;gap:1rem;
+    z-index:9999;box-shadow:0 8px 40px rgba(0,0,0,.6);backdrop-filter:blur(20px);
+  `;
+  bar.innerHTML = `
+    <span style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#C8FF00;letter-spacing:.1em;">✦ ADMIN MODE</span>
+    <div style="width:1px;height:16px;background:rgba(255,255,255,.1)"></div>
+    <button onclick="saveAllChanges()" style="background:rgba(200,255,0,.12);color:#C8FF00;border:1px solid rgba(200,255,0,.25);border-radius:20px;padding:.35rem .9rem;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.08em;cursor:pointer;">저장</button>
+    <button onclick="exitAdmin()" style="background:rgba(255,64,96,.08);color:#FF8099;border:1px solid rgba(255,64,96,.2);border-radius:20px;padding:.35rem .9rem;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.08em;cursor:pointer;">나가기</button>
+  `;
+  document.body.appendChild(bar);
+
+  // 수정 가능한 요소들에 편집 버튼 추가
+  setupEditables();
+  loadSavedData();
+}
+
+function exitAdmin(){
+  adminMode = false;
+  document.getElementById("admin-bar")?.remove();
+  document.querySelectorAll(".admin-edit-btn").forEach(el=>el.remove());
+  document.querySelectorAll(".admin-editable").forEach(el=>el.classList.remove("admin-editable"));
+}
+
+// 수정 가능한 항목 정의
+const EDITABLES = [
+  { selector: ".wc:nth-child(1) .wlink-wrap, .wc:nth-child(1) a.wlink-wrap", label: "AI Video 링크", type: "link" },
+  { selector: ".wc:nth-child(2) .wlink-wrap", label: "닥터블릿 링크", type: "link" },
+  { selector: ".wc:nth-child(5) .wlink-wrap", label: "신한라이프 링크", type: "link" },
+  { selector: ".clinks .clink:nth-child(1)", label: "Instagram 링크", type: "link" },
+  { selector: ".clinks .clink:nth-child(2)", label: "Email 링크", type: "link" },
+  { selector: ".clinks .clink:nth-child(3)", label: "전화번호 링크", type: "link" },
+  { selector: ".clinks .clink:nth-child(1) .cval", label: "Instagram 주소 텍스트", type: "text" },
+  { selector: ".clinks .clink:nth-child(2) .cval", label: "이메일 텍스트", type: "text" },
+  { selector: ".clinks .clink:nth-child(3) .cval", label: "전화번호 텍스트", type: "text" },
+  { selector: ".wc:nth-child(3) .wbtn-sm:nth-child(1)", label: "lululemon IG 링크", type: "link" },
+  { selector: ".wc:nth-child(3) .wbtn-sm:nth-child(2)", label: "Y FUND YT 링크", type: "link" },
+  { selector: ".wc:nth-child(4) .wbtn-sm:nth-child(1)", label: "데일리뉴스 링크", type: "link" },
+  { selector: ".wc:nth-child(4) .wbtn-sm:nth-child(2)", label: "시사매거진 링크", type: "link" },
+  { selector: ".wc:nth-child(4) .wbtn-sm:nth-child(3)", label: "청색경제 링크", type: "link" },
+  { selector: ".wc:nth-child(3) .woverlay-btn:nth-child(1)", label: "lululemon IG 오버레이", type: "link" },
+  { selector: ".wc:nth-child(3) .woverlay-btn:nth-child(2)", label: "Y FUND 오버레이", type: "link" },
+];
+
+function setupEditables(){
+  // 편집 오버레이 스타일
+  const style = document.createElement("style");
+  style.id = "admin-styles";
+  style.textContent = `
+    .admin-editable { outline: 1.5px dashed rgba(200,255,0,.4) !important; position:relative !important; }
+    .admin-edit-btn {
+      position:absolute !important; top:4px !important; right:4px !important;
+      z-index:9990 !important; background:#C8FF00 !important; color:#08080C !important;
+      border:none !important; border-radius:5px !important; padding:2px 7px !important;
+      font-family:'JetBrains Mono',monospace !important; font-size:.5rem !important;
+      letter-spacing:.05em !important; cursor:pointer !important; font-weight:700 !important;
+      white-space:nowrap !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  EDITABLES.forEach(item => {
+    const el = document.querySelector(item.selector);
+    if(!el) return;
+    const comp = window.getComputedStyle(el);
+    if(comp.position === "static") el.style.position = "relative";
+    el.classList.add("admin-editable");
+    const btn = document.createElement("button");
+    btn.className = "admin-edit-btn";
+    btn.textContent = "✏ " + item.label;
+    btn.addEventListener("click", (e)=>{
+      e.preventDefault(); e.stopPropagation();
+      openEditModal(el, item);
+    });
+    el.appendChild(btn);
+  });
+}
+
+function openEditModal(el, item){
+  document.getElementById("admin-modal")?.remove();
+  const currentVal = item.type === "link" ? (el.href || el.getAttribute("href") || "") : el.textContent.replace(/✏.*$/,"").trim();
+
+  const modal = document.createElement("div");
+  modal.id = "admin-modal";
+  modal.style.cssText = `
+    position:fixed;inset:0;background:rgba(8,8,12,.88);backdrop-filter:blur(15px);
+    z-index:99999;display:flex;align-items:center;justify-content:center;padding:1rem;
+  `;
+  modal.innerHTML = `
+    <div style="background:#0F0F16;border:1px solid rgba(200,255,0,.25);border-radius:16px;padding:2rem;width:100%;max-width:420px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#C8FF00;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem">편집</div>
+      <div style="font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:1rem;color:#F0F0F5;margin-bottom:1.5rem">${item.label}</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.58rem;color:rgba(240,240,245,.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">${item.type === "link" ? "URL" : "텍스트"}</div>
+      <input id="admin-modal-input" type="text" value="${currentVal}"
+        style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:.85rem 1rem;color:#F0F0F5;font-family:'JetBrains Mono',monospace;font-size:.75rem;outline:none;margin-bottom:1.2rem;"
+      />
+      <div style="display:flex;gap:.6rem;">
+        <button onclick="applyEdit('${item.selector}','${item.type}')" style="flex:1;background:#C8FF00;color:#08080C;border:none;border-radius:8px;padding:.85rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.1em;cursor:pointer;">적용</button>
+        <button onclick="document.getElementById('admin-modal').remove()" style="flex:1;background:rgba(255,255,255,.04);color:#F0F0F5;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.85rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;cursor:pointer;">취소</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  const input = document.getElementById("admin-modal-input");
+  input.focus(); input.select();
+  input.addEventListener("keydown", e=>{ if(e.key==="Enter") applyEdit(item.selector, item.type); });
+}
+
+function applyEdit(selector, type){
+  const val = document.getElementById("admin-modal-input").value.trim();
+  const el = document.querySelector(selector);
+  if(!el || !val) return;
+  if(type === "link"){
+    el.href = val;
+    // 오버레이 버튼도 같이 업데이트
+    const overlay = el.closest(".wc")?.querySelector(".woverlay-btn");
+  } else {
+    // 텍스트만 교체 (편집 버튼 제외)
+    const btn = el.querySelector(".admin-edit-btn");
+    el.childNodes.forEach(n=>{ if(n.nodeType===3) n.textContent=""; });
+    el.insertBefore(document.createTextNode(val), btn || null);
+  }
+  document.getElementById("admin-modal").remove();
+  saveAllChanges();
+  showToast("저장됨 ✓");
+}
+
+function saveAllChanges(){
+  const data = {};
+  EDITABLES.forEach(item => {
+    const el = document.querySelector(item.selector);
+    if(!el) return;
+    if(item.type === "link") data[item.label+"_href"] = el.href;
+    else {
+      const btn = el.querySelector(".admin-edit-btn");
+      let txt = "";
+      el.childNodes.forEach(n=>{ if(n.nodeType===3) txt += n.textContent; });
+      data[item.label+"_text"] = txt.trim();
+    }
+  });
+  localStorage.setItem("hb_portfolio_data", JSON.stringify(data));
+  showToast("모두 저장됨 ✓");
+}
+
+function loadSavedData(){
+  const raw = localStorage.getItem("hb_portfolio_data");
+  if(!raw) return;
+  const data = JSON.parse(raw);
+  EDITABLES.forEach(item => {
+    const el = document.querySelector(item.selector);
+    if(!el) return;
+    if(item.type === "link" && data[item.label+"_href"]){
+      el.href = data[item.label+"_href"];
+    } else if(item.type === "text" && data[item.label+"_text"]){
+      el.childNodes.forEach(n=>{ if(n.nodeType===3) n.textContent=""; });
+      el.insertBefore(document.createTextNode(data[item.label+"_text"]), el.querySelector(".admin-edit-btn") || null);
+    }
+  });
+}
+
+// 페이지 로드 시 저장된 데이터 자동 적용
+window.addEventListener("DOMContentLoaded", ()=>{ loadSavedData(); });
+
+function showToast(msg){
+  const t = document.createElement("div");
+  t.style.cssText = `
+    position:fixed;top:1.5rem;left:50%;transform:translateX(-50%);
+    background:#C8FF00;color:#08080C;
+    font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:700;
+    letter-spacing:.1em;padding:.5rem 1.2rem;border-radius:100px;
+    z-index:99999;transition:opacity .4s;
+  `;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(()=>{ t.style.opacity="0"; setTimeout(()=>t.remove(), 400); }, 1800);
+}
+</script>
+</body>
+</html>
