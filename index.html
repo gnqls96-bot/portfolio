@@ -136,6 +136,12 @@ nav {
 .work-link:hover { color: var(--white); border-color: var(--gray); }
 .work-link svg { width: 11px; height: 11px; }
 .work-media { overflow: hidden; min-height: 380px; background: #161616; }
+.work-media.work-media-shorts { min-height: 0; }
+.work-media.work-media-shorts iframe {
+  width: 100%; height: 100%;
+  min-height: 560px;
+  display: block;
+}
 .work-media img, .work-media video {
   width: 100%; height: 100%; object-fit: cover; display: block;
   transition: transform .6s cubic-bezier(.25,.46,.45,.94);
@@ -319,16 +325,20 @@ footer p { font-size: 12px; font-weight: 300; color: var(--gray); }
       </div>
       <div class="work-meta-bottom">
         <p class="work-year">2025.02 — 현재</p>
-        <a class="work-link" href="https://youtube.com/@HUSTV_official" target="_blank">
+        <a class="work-link" href="https://youtu.be/lBECtGNhdTE" target="_blank">
           YouTube에서 보기
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2V8"/></svg>
         </a>
       </div>
     </div>
-    <div class="work-media">
-      <!-- <video src="videos/drblet-ad.mp4" autoplay muted loop playsinline></video> -->
-      <!-- <img src="images/drblet-ad.jpg" alt="구매전환광고"> -->
-      <div class="work-ph"><div></div><p>영상 또는 이미지</p></div>
+    <div class="work-media" style="min-height:380px;">
+      <iframe
+        src="https://www.youtube.com/embed/6FdOtM6oDsA?autoplay=1&mute=1&loop=1&playlist=6FdOtM6oDsA&controls=0&modestbranding=1&rel=0"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        style="width:100%;height:100%;min-height:380px;display:block;">
+      </iframe>
     </div>
   </div>
 
