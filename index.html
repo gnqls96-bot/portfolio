@@ -208,6 +208,28 @@ nav {
 .clink-arr { font-size: 14px; color: var(--gray); transition: transform .2s, color .2s; }
 .clink:hover .clink-arr { transform: translateX(4px); color: var(--white); }
 
+/* SLIDER */
+.img-slider { width:100%; height:100%; min-height:380px; position:relative; }
+.img-slider .slide {
+  position:absolute; inset:0;
+  width:100%; height:100%; min-height:380px;
+  object-fit:cover; display:block;
+  opacity:0; transition:opacity .5s ease;
+}
+.img-slider .slide.active { opacity:1; }
+.slider-prev, .slider-next {
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(0,0,0,.5); color:var(--white);
+  border:none; border-radius:50%;
+  width:36px; height:36px; font-size:16px;
+  cursor:pointer; z-index:10;
+  transition:background .2s;
+  display:flex; align-items:center; justify-content:center;
+}
+.slider-prev:hover, .slider-next:hover { background:rgba(0,0,0,.8); }
+.slider-prev { left:12px; }
+.slider-next { right:12px; }
+
 /* FOOTER */
 footer { padding: 20px 40px; display: flex; justify-content: space-between; border-top: 1px solid var(--gray2); }
 footer p { font-size: 12px; font-weight: 300; color: var(--gray); }
@@ -263,7 +285,7 @@ footer p { font-size: 12px; font-weight: 300; color: var(--gray); }
   <div class="hero-bg">LEEHUBIN</div>
   <div class="hero-photo-wrap">
     <!-- 프로필 사진: <img src="images/profile.jpg" class="hero-photo" alt="이후빈"> -->
-    <div class="hero-photo-ph"><p>프로필 사진</p></div>
+    <img src="profile.jpg" class="hero-photo" alt="이후빈">
   </div>
   <div class="hero-bottom-left">
     <p>촬영 없이 만든 광고로<br><span class="acc">7억을 팔았습니다.</span></p>
@@ -325,7 +347,7 @@ footer p { font-size: 12px; font-weight: 300; color: var(--gray); }
       </div>
       <div class="work-meta-bottom">
         <p class="work-year">2025.02 — 현재</p>
-        <a class="work-link" href="https://youtu.be/lBECtGNhdTE" target="_blank">
+        <a class="work-link" href="https://www.youtube.com/playlist?list=PL2j9wLyZmlhxlLXsoZ20-dTJP9BfHoaUP" target="_blank">
           YouTube에서 보기
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2V8"/></svg>
         </a>
@@ -342,13 +364,13 @@ footer p { font-size: 12px; font-weight: 300; color: var(--gray); }
     </div>
   </div>
 
-  <!-- 02 닥터블릿 — AI 영상·이미지 -->
+  <!-- 02 닥터블릿 — AI 영상 -->
   <div class="work-entry">
     <div class="work-left">
       <div>
         <p class="work-idx">02</p>
         <p class="work-co">닥터블릿헬스케어</p>
-        <h3 class="work-title">AI 광고 이미지 및 영상</h3>
+        <h3 class="work-title">AI 영상</h3>
         <div class="work-tags">
           <span class="work-tag">AI Video</span>
           <span class="work-tag">AI Image</span>
@@ -356,14 +378,20 @@ footer p { font-size: 12px; font-weight: 300; color: var(--gray); }
       </div>
       <div class="work-meta-bottom">
         <p class="work-year">2025.02 — 현재</p>
-        <a class="work-link" href="https://instagram.com/aihubin" target="_blank">
-          Instagram에서 보기
+        <a class="work-link" href="https://www.youtube.com/playlist?list=PL2j9wLyZmlhxlLXsoZ20-dTJP9BfHoaUP" target="_blank">
+          YouTube에서 보기
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2V8"/></svg>
         </a>
       </div>
     </div>
-    <div class="work-media">
-      <div class="work-ph"><div></div><p>영상 또는 이미지</p></div>
+    <div class="work-media" style="min-height:380px;">
+      <iframe
+        src="https://www.youtube.com/embed/Z6acP6sND78?autoplay=1&mute=1&loop=1&playlist=Z6acP6sND78&controls=0&modestbranding=1&rel=0"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        style="width:100%;height:100%;min-height:380px;display:block;">
+      </iframe>
     </div>
   </div>
 
@@ -381,14 +409,20 @@ footer p { font-size: 12px; font-weight: 300; color: var(--gray); }
       </div>
       <div class="work-meta-bottom">
         <p class="work-year">2024.01 — 2025.01</p>
-        <a class="work-link" href="https://www.instagram.com/lululemon_kr/" target="_blank">
+        <a class="work-link" href="https://www.instagram.com/lululemonkr/reels/" target="_blank">
           Instagram에서 보기
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2V8"/></svg>
         </a>
       </div>
     </div>
-    <div class="work-media">
-      <div class="work-ph"><div></div><p>영상 또는 이미지</p></div>
+    <div class="work-media" style="min-height:380px;">
+      <iframe
+        src="https://www.youtube.com/embed/zPrBQncpYpE?autoplay=1&mute=1&loop=1&playlist=zPrBQncpYpE&controls=0&modestbranding=1&rel=0"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        style="width:100%;height:100%;min-height:380px;display:block;">
+      </iframe>
     </div>
   </div>
 
@@ -406,39 +440,49 @@ footer p { font-size: 12px; font-weight: 300; color: var(--gray); }
       </div>
       <div class="work-meta-bottom">
         <p class="work-year">2024 — 현재</p>
-        <a class="work-link" href="https://instagram.com/aihubin" target="_blank">
+        <a class="work-link" href="https://www.instagram.com/aihubin/" target="_blank">
           Instagram에서 보기
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2V8"/></svg>
         </a>
       </div>
     </div>
-    <div class="work-media">
-      <div class="work-ph"><div></div><p>영상 또는 이미지</p></div>
+    <div class="work-media" style="min-height:380px;">
+      <iframe
+        src="https://www.youtube.com/embed/aJr4oQIX3lA?autoplay=1&mute=1&loop=1&playlist=aJr4oQIX3lA&controls=0&modestbranding=1&rel=0"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        style="width:100%;height:100%;min-height:380px;display:block;">
+      </iframe>
     </div>
   </div>
 
-  <!-- 05 데일리뉴스 -->
+  <!-- 05 AI 이미지 제작 -->
   <div class="work-entry">
     <div class="work-left">
       <div>
         <p class="work-idx">05</p>
-        <p class="work-co">데일리뉴스</p>
-        <h3 class="work-title">뉴스 채널 3개 운영</h3>
+        <p class="work-co">AI Image Work</p>
+        <h3 class="work-title">AI 이미지 제작</h3>
         <div class="work-tags">
-          <span class="work-tag">News</span>
-          <span class="work-tag">Motion</span>
+          <span class="work-tag">AI Image</span>
+          <span class="work-tag">Generative</span>
         </div>
       </div>
       <div class="work-meta-bottom">
-        <p class="work-year">2023.05 — 2023.11</p>
-        <a class="work-link" href="https://youtube.com/@HUSTV_official" target="_blank">
-          YouTube에서 보기
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2V8"/></svg>
-        </a>
+        <p class="work-year">2024 — 현재</p>
       </div>
     </div>
-    <div class="work-media">
-      <div class="work-ph"><div></div><p>영상 또는 이미지</p></div>
+    <div class="work-media" style="min-height:380px;position:relative;">
+      <div class="img-slider" id="slider05">
+        <img src="ai-01.png" alt="AI 이미지 1" class="slide active">
+        <img src="ai-02.jpg" alt="AI 이미지 2" class="slide">
+        <img src="ai-03.jpg" alt="AI 이미지 3" class="slide">
+        <img src="ai-04.jpg" alt="AI 이미지 4" class="slide">
+        <img src="ai-05.png" alt="AI 이미지 5" class="slide">
+      </div>
+      <button class="slider-prev" onclick="moveSlide(-1)">&#8592;</button>
+      <button class="slider-next" onclick="moveSlide(1)">&#8594;</button>
     </div>
   </div>
 
@@ -530,6 +574,17 @@ footer p { font-size: 12px; font-weight: 300; color: var(--gray); }
 </footer>
 
 <script>
+// 슬라이더
+let current = 0;
+const slides = document.querySelectorAll('.img-slider .slide');
+function moveSlide(dir) {
+  slides[current].classList.remove('active');
+  current = (current + dir + slides.length) % slides.length;
+  slides[current].classList.add('active');
+}
+// 자동 슬라이드
+setInterval(() => moveSlide(1), 3000);
+
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
 }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
