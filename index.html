@@ -4,389 +4,338 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>이후빈 | AI 이미지·영상 광고 PD</title>
-<meta name="description" content="AI 이미지와 AI 영상으로 건강기능식품 커머스 광고를 만드는 영상 PD 이후빈의 포트폴리오. 광고 소재 258편, 광고비 4억 1,080만 원, 매출 4억 5,782만 원.">
+<meta name="description" content="AI 이미지와 AI 영상으로 커머스 광고를 만드는 영상 PD 이후빈의 포트폴리오. 광고 소재 258편, 광고비 4억 1,080만 원, 매출 4억 5,782만 원.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Gothic+A1:wght@400;500;700&display=swap">
 <style>
 :root {
-  --paper: #edefeb;
-  --paper-2: #e2e5df;
-  --ink: #16181b;
-  --ink-2: #464b52;
-  --rule: #c5c9c2;
-  --key: #2340f0;
-  --key-deep: #1a2fc0;
-  --on-key: #eef0ff;
-  --display: 'Black Han Sans', 'Apple SD Gothic Neo', sans-serif;
-  --text: 'Gothic A1', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-  --gutter: clamp(16px, 4vw, 56px);
+  --umber: #2a221d;
+  --bone: #ebe5da;
+  --bone-2: #b9ae9f;
+  --stone: #d6d1c9;
+  --ink: #201a16;
+  --ink-2: #5b524a;
+  --brass: #c2a573;
+  --line-d: rgba(235, 229, 218, .18);
+  --line-l: rgba(32, 26, 22, .2);
+  --serif: 'Song Myung', 'Nanum Myeongjo', serif;
+  --sans: 'Gothic A1', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --gutter: clamp(16px, 4.5vw, 72px);
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--text);
-  font-size: 17px;
-  line-height: 1.7;
-  word-break: keep-all;
-  -webkit-font-smoothing: antialiased;
+  margin: 0; background: var(--stone); color: var(--ink);
+  font-family: var(--sans); font-size: 16px; line-height: 1.75;
+  word-break: keep-all; -webkit-font-smoothing: antialiased;
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
-:focus-visible { outline: 2px solid var(--key); outline-offset: 3px; }
-.skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--paper); padding: 8px 12px; z-index: 10; }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.skip { position: absolute; left: -999px; top: 0; z-index: 20; background: var(--ink); color: var(--bone); padding: 8px 12px; }
 .skip:focus { left: 8px; }
+.dark { background: var(--umber); color: var(--bone); }
+.serif { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; }
 
-/* ---------- Hero: blue screen ---------- */
-.hero {
-  background: var(--key);
-  color: var(--on-key);
-  min-height: 100svh;
-  padding: 0 var(--gutter) clamp(32px, 5vw, 64px);
-  display: grid;
-  grid-template-rows: auto 1fr;
-  overflow: hidden;
-}
-.hero :focus-visible { outline-color: var(--on-key); }
+/* ---------- Top bar ---------- */
 .topbar {
-  display: flex; justify-content: space-between; align-items: baseline;
-  gap: 24px; padding: 22px 0;
+  position: absolute; z-index: 5; inset: 0 0 auto 0;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+  padding: 24px var(--gutter);
+  color: var(--ink);
 }
-.topbar .me { font-weight: 700; font-size: 16px; text-decoration: none; }
-.topbar nav { display: flex; gap: clamp(14px, 2.4vw, 32px); flex-wrap: wrap; justify-content: flex-end; }
-.topbar nav a { font-size: 15px; text-decoration: none; opacity: .86; }
-.topbar nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
+.topbar .me { font-family: var(--serif); font-size: 22px; text-decoration: none; }
+.topbar nav { display: flex; gap: clamp(14px, 2.2vw, 30px); flex-wrap: wrap; justify-content: flex-end; font-size: 14px; }
+.topbar nav a { text-decoration: none; }
+.topbar nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
 
-.hero-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(24px, 4vw, 64px);
-  align-items: center;
-  padding-top: clamp(24px, 4vh, 56px);
+/* ---------- Hero ---------- */
+.hero { position: relative; height: 100svh; min-height: 620px; overflow: hidden; background: #e8dccb; }
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
+.hero-copy {
+  position: absolute; z-index: 2; left: var(--gutter); bottom: clamp(36px, 7vh, 80px);
+  max-width: min(58vw, 820px);
 }
-.hero h1 {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(50px, 7.4vw, 132px);
-  line-height: 1.02;
-  letter-spacing: -0.01em;
-  margin: 0 0 clamp(20px, 3vw, 36px);
+.hero h1 { font-size: clamp(48px, 7.4vw, 124px); line-height: 1.08; margin: 0 0 22px; }
+.hero-copy p { margin: 0; font-size: clamp(15px, 1.15vw, 18px); max-width: 30em; }
+.hero-tag {
+  position: absolute; z-index: 2; right: var(--gutter); bottom: clamp(36px, 7vh, 80px);
+  margin: 0; font-size: 13px; color: var(--ink); text-align: right; max-width: 16em; line-height: 1.6;
 }
-.hero-intro { max-width: 34em; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.75; margin: 0; }
-.hero-intro strong { font-weight: 700; }
-
-.frames {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  padding-top: 40px;
-}
-.frames figure { margin: 0; flex: 0 0 41%; position: relative; }
-.frames figure + figure { margin-left: -14%; }
-.frames img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; outline: 6px solid var(--key); }
-.frames figure:nth-child(1) { z-index: 1; transform: translateY(-6%); }
-.frames figure:nth-child(2) { z-index: 2; transform: translateY(-22%); }
-.frames figure:nth-child(3) { z-index: 3; }
-.frames-note { font-size: 13px; opacity: .8; margin: 16px 0 0; }
-
 @media (prefers-reduced-motion: no-preference) {
-  .frames figure { animation: keyin .9s cubic-bezier(.2, .7, .2, 1) both; }
-  .frames figure:nth-child(1) { animation-delay: .15s; }
-  .frames figure:nth-child(2) { animation-delay: .3s; }
-  .frames figure:nth-child(3) { animation-delay: .45s; }
-  @keyframes keyin { from { opacity: 0; translate: 0 40px; } to { opacity: 1; translate: 0 0; } }
+  .hero > img { animation: settle 2.4s cubic-bezier(.2, .6, .2, 1) both; }
+  @keyframes settle { from { transform: scale(1.07); } to { transform: scale(1); } }
 }
 
-/* ---------- Sections ---------- */
-section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
-.sec-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  gap: clamp(20px, 4vw, 64px);
-  margin-bottom: clamp(36px, 5vw, 64px);
-}
-h2 {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(36px, 4.6vw, 68px);
-  line-height: 1.08;
-  margin: 0;
-}
-.lede { font-size: clamp(20px, 2.1vw, 30px); line-height: 1.5; font-weight: 500; margin: 0; max-width: 26em; }
-.lede b { font-weight: 700; }
-.sub { color: var(--ink-2); margin: 18px 0 0; max-width: 36em; }
+/* ---------- Shared ---------- */
+section { padding: clamp(80px, 11vw, 160px) var(--gutter); }
+h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 4.4vw, 64px); line-height: 1.15; margin: 0; }
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 96px); }
+.intro { margin: 0; max-width: 32em; color: var(--ink-2); }
+.dark .intro, .dark .muted { color: var(--bone-2); }
+.muted { color: var(--ink-2); }
 
-/* ---------- Results ---------- */
-#results { border-bottom: 1px solid var(--rule); }
-.tables { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(20px, 4vw, 64px); }
-.tables + .tables { margin-top: clamp(48px, 6vw, 80px); }
-.t-title { font-size: 18px; font-weight: 700; margin: 0 0 6px; }
-.t-desc { color: var(--ink-2); font-size: 15px; margin: 0; max-width: 22em; }
-.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 15px; }
-th, td { text-align: left; padding: 13px 12px 13px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-th { font-weight: 500; color: var(--ink-2); font-size: 14px; white-space: nowrap; }
-td.n, th.n { text-align: right; white-space: nowrap; padding-right: 0; padding-left: 16px; }
-td .prod { display: block; color: var(--ink-2); font-size: 13px; }
-tr.total td { font-weight: 700; border-bottom: 2px solid var(--ink); }
-tr.total td:first-child::before { content: none; }
-.name { font-weight: 500; }
-.rev-cell { position: relative; }
-.bar { display: block; height: 4px; background: var(--key); margin-top: 7px; margin-left: auto; border-radius: 2px; }
-.roas-hi { color: var(--key-deep); font-weight: 700; }
-.mark { color: var(--key-deep); }
-.notes { list-style: none; margin: clamp(40px, 5vw, 64px) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(20px, 4vw, 64px); }
-.notes > li:first-child { font-weight: 700; font-size: 18px; }
-.notes ul { margin: 0; padding: 0 0 0 1.1em; }
-.notes ul li { font-weight: 400; font-size: 17px; margin-bottom: 10px; }
-.source { color: var(--ink-2); font-size: 13px; line-height: 1.6; margin: 32px 0 0; max-width: 60em; }
+/* ---------- Statement ---------- */
+.statement .big { font-family: var(--serif); font-size: clamp(34px, 4.8vw, 76px); line-height: 1.22; margin: 0; max-width: 15em; }
+.statement .big .num { color: var(--brass); }
+.statement .after { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 96px); margin-top: clamp(40px, 5vw, 72px); }
+.statement .after p { margin: 0; max-width: 34em; }
+.statement .who { font-size: 14px; }
 
-/* ---------- Work ---------- */
-#work { background: var(--paper-2); }
-.videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+/* ---------- Gallery ---------- */
+.strip-sec { padding-top: 0; }
+.strip-head { margin-bottom: clamp(24px, 3vw, 40px); padding-top: clamp(40px, 5vw, 72px); border-top: 1px solid var(--line-d); }
+.strip-head h2 { font-size: clamp(28px, 3vw, 44px); }
+.gallery { display: flex; flex-direction: column; gap: clamp(28px, 3vw, 48px); }
+.g-row { display: flex; gap: clamp(12px, 1.6vw, 24px); align-items: flex-start; }
+.g-row figure { margin: 0; flex: var(--r) 1 0; min-width: 0; }
+.g-row img { width: 100%; height: auto; }
+.g-row figcaption { font-size: 13px; color: var(--bone-2); padding-top: 12px; }
+.g-row .g-note { flex: 1 1 0; align-self: flex-end; margin: 0; color: var(--bone-2); font-size: 15px; max-width: 22em; }
+/* ---------- Video ---------- */
+.videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 3vw, 44px) clamp(16px, 2vw, 28px); margin-top: clamp(40px, 5vw, 72px); }
 .videos .wide { grid-column: 1 / -1; }
-.video figcaption { padding: 14px 0 0; }
-.video figcaption b { display: block; font-size: 18px; }
-.video figcaption span { color: var(--ink-2); font-size: 15px; }
 .video { margin: 0; }
 .player {
-  position: relative; display: block; width: 100%; aspect-ratio: 16 / 9;
-  border: 0; padding: 0; cursor: pointer; overflow: hidden; border-radius: 4px;
-  background: var(--ink) center / cover no-repeat;
+  position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; cursor: pointer;
+  background: var(--umber); color: var(--bone); overflow: hidden; text-align: left; font: inherit;
 }
-.player img { width: 100%; height: 100%; object-fit: cover; }
+.player img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.player .poster-title { display: none; position: absolute; left: 24px; top: 20px; font-family: var(--serif); font-size: clamp(22px, 2.4vw, 36px); line-height: 1.2; max-width: 12em; }
+.player.no-thumb .poster-title { display: block; }
 .player .play {
-  position: absolute; left: 16px; bottom: 16px;
-  background: var(--key); color: var(--on-key);
-  font: 700 15px var(--text); padding: 10px 16px; border-radius: 3px;
+  position: absolute; left: 20px; bottom: 20px; z-index: 1;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--bone); color: var(--ink); font-size: 14px; font-weight: 500; padding: 10px 18px 10px 14px; border-radius: 999px;
 }
-.player:hover .play { background: var(--key-deep); }
+.player .play::before { content: ""; width: 0; height: 0; border-left: 9px solid currentColor; border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+.player:hover .play { background: #fff; }
 .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video figcaption { padding-top: 14px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 16px; }
+.video figcaption b { font-weight: 700; }
+.video figcaption span { color: var(--ink-2); }
 
-.stills { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 22px); margin-top: clamp(56px, 7vw, 96px); }
-.stills figure { margin: 0; grid-column: span 2; }
-.stills figure.land { grid-column: span 3; }
-.stills img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; }
-.stills figure.land img { aspect-ratio: 3 / 2; }
-.stills figcaption { font-size: 14px; color: var(--ink-2); padding-top: 10px; }
-.block-title { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 0 0 20px; }
-.block-title h3 { font-size: 20px; margin: 0; }
-.block-title a { font-size: 15px; }
+/* ---------- Results ---------- */
+.ledger { margin-top: clamp(40px, 5vw, 72px); }
+.ledger + .ledger { margin-top: clamp(56px, 7vw, 96px); }
+.ledger-head { margin-bottom: 14px; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+.ledger-head b { font-size: 17px; }
+.ledger-head span { font-size: 14px; }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 15px; }
+th, td { text-align: left; padding: 14px 12px 14px 0; border-bottom: 1px solid var(--line-l); vertical-align: top; }
+thead th { font-weight: 400; font-size: 13px; color: var(--ink-2); border-bottom-color: var(--ink); }
+td.n, th.n { text-align: right; white-space: nowrap; padding-left: 16px; padding-right: 0; }
+td .sub { display: block; color: var(--ink-2); font-size: 13px; font-weight: 400; }
+td.good { font-weight: 700; }
+tr.total td { font-weight: 700; border-bottom: 1px solid var(--ink); }
+.bar { display: block; height: 2px; background: var(--ink); margin: 8px 0 0 auto; }
+.facts { margin-top: clamp(56px, 7vw, 96px); }
+.facts ol { list-style: none; margin: 0; padding: 0; }
+.facts li { padding: 18px 0; border-top: 1px solid var(--line-l); font-size: 17px; }
+.facts li:last-child { border-bottom: 1px solid var(--line-l); }
+.facts li b { font-family: var(--serif); font-weight: 400; font-size: 1.4em; margin-right: 10px; }
+.source { font-size: 13px; color: var(--ink-2); margin: 28px 0 0; max-width: 62em; line-height: 1.6; }
 
 /* ---------- Process ---------- */
-#process { border-bottom: 1px solid var(--rule); }
-.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.steps { list-style: none; margin: clamp(40px, 5vw, 72px) 0 0; padding: 0; counter-reset: s; }
 .steps li {
-  counter-increment: s;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: clamp(12px, 3vw, 48px);
-  padding: 22px 0;
-  border-top: 1px solid var(--rule);
+  counter-increment: s; display: grid;
+  grid-template-columns: 64px minmax(0, 3fr) minmax(0, 3fr) minmax(0, 5fr);
+  gap: clamp(10px, 2vw, 32px); padding: 22px 0; border-top: 1px solid var(--line-d); align-items: baseline;
 }
-.steps li:last-child { border-bottom: 1px solid var(--rule); }
-.steps .what { font-weight: 700; font-size: 19px; }
-.steps .what::before { content: counter(s) "  "; font-family: var(--display); font-weight: 400; color: var(--key); margin-right: 10px; }
-.steps .tools { color: var(--ink); }
-.steps .how { color: var(--ink-2); }
+.steps li:last-child { border-bottom: 1px solid var(--line-d); }
+.steps li::before { content: counter(s); font-family: var(--serif); font-size: 28px; color: var(--brass); line-height: 1; }
+.steps .what { font-weight: 700; font-size: 18px; }
+.steps .how { color: var(--bone-2); }
 
 /* ---------- Career ---------- */
-.career { list-style: none; margin: 0; padding: 0; }
-.career li {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  gap: clamp(12px, 4vw, 64px);
-  padding: 26px 0; border-top: 1px solid var(--rule);
-}
-.career li:last-child { border-bottom: 1px solid var(--rule); }
+.career { list-style: none; margin: clamp(40px, 5vw, 72px) 0 0; padding: 0; }
+.career li { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(12px, 5vw, 96px); padding: 26px 0; border-top: 1px solid var(--line-l); }
+.career li:last-child { border-bottom: 1px solid var(--line-l); }
 .career .when { color: var(--ink-2); font-variant-numeric: tabular-nums; }
-.career .co { font-weight: 700; font-size: 20px; margin: 0; }
-.career .role { color: var(--ink-2); margin: 2px 0 8px; font-size: 15px; }
-.career p { margin: 0; max-width: 40em; }
+.career .co { font-family: var(--serif); font-size: 26px; line-height: 1.3; margin: 0; }
+.career .role { color: var(--ink-2); font-size: 14px; margin: 2px 0 10px; }
+.career p { margin: 0; max-width: 38em; }
 
 /* ---------- Contact ---------- */
-#contact { padding-bottom: clamp(48px, 6vw, 80px); }
-.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(20px, 4vw, 64px); align-items: start; }
-.portrait { width: min(220px, 60%); aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; }
-.mail {
-  display: inline-block; font-weight: 700; letter-spacing: -0.02em;
-  font-size: clamp(28px, 4.6vw, 68px); line-height: 1.1; text-decoration: none;
-  color: var(--key); overflow-wrap: anywhere;
-}
-.mail:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
-.links { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, max-content); gap: 8px 40px; }
-.links span { display: block; color: var(--ink-2); font-size: 14px; }
-.links a { font-weight: 500; }
-footer { padding: 24px var(--gutter) 40px; color: var(--ink-2); font-size: 13px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.contact-sec { padding-bottom: clamp(48px, 6vw, 80px); }
+.contact { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 96px); align-items: end; }
+.contact h2 { font-size: clamp(40px, 6vw, 96px); line-height: 1.12; }
+.mail { display: inline-block; font-size: clamp(24px, 3.2vw, 46px); font-weight: 500; letter-spacing: -0.02em; text-decoration: none; border-bottom: 1px solid var(--brass); padding-bottom: 4px; overflow-wrap: anywhere; }
+.mail:hover { color: var(--brass); }
+.links { list-style: none; padding: 0; margin: 32px 0 0; display: flex; flex-wrap: wrap; gap: 14px 44px; }
+.links span { display: block; font-size: 13px; color: var(--bone-2); }
+.portrait-row { display: flex; gap: 20px; align-items: end; margin-top: 40px; }
+.portrait { width: 112px; aspect-ratio: 3 / 4; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+.portrait-row p { margin: 0; font-size: 14px; color: var(--bone-2); max-width: 22em; }
+footer { padding: 28px var(--gutter) 36px; display: flex; justify-content: space-between; gap: 16px; font-size: 13px; color: var(--bone-2); border-top: 1px solid var(--line-d); }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-  .hero { min-height: 0; }
-  .hero-body { grid-template-columns: 1fr; align-items: start; }
-  .frames { padding-top: 8px; }
-  .frames { padding-top: 24px; }
-  .sec-head, .tables, .notes, .career li, .contact { grid-template-columns: 1fr; }
-  .steps li { grid-template-columns: 1fr; gap: 4px; }
-  .links { grid-template-columns: 1fr 1fr; }
+@media (max-width: 1000px) {
+  .split, .statement .after, .career li, .contact { grid-template-columns: 1fr; }
+  .steps li { grid-template-columns: 48px minmax(0, 1fr); }
+  .steps .tools, .steps .how { grid-column: 2; }
+  .video figcaption { grid-template-columns: 1fr; gap: 2px; }
+  .hero { height: auto; min-height: 0; background: var(--stone); }
+  .hero > img { position: static; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: 62% 50%; }
+  .topbar { position: static; padding-bottom: 18px; }
+  .hero-copy { position: static; max-width: none; padding: 32px var(--gutter) 0; }
+  .hero-tag { position: static; text-align: left; padding: 14px var(--gutter) 48px; max-width: none; color: var(--ink-2); }
 }
-@media (max-width: 600px) {
-  body { font-size: 16px; }
-  .topbar { flex-direction: column; gap: 10px; }
+@media (max-width: 760px) {
+  .hero > img { aspect-ratio: 4 / 5; }
+  .topbar { flex-direction: column; gap: 8px; }
   .topbar nav { justify-content: flex-start; }
   .videos { grid-template-columns: 1fr; }
-  .stills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .stills figure, .stills figure.land { grid-column: span 1; }
-  .stills figure.land, .stills figure:nth-of-type(3) { grid-column: 1 / -1; }
+  .g-row { flex-wrap: wrap; }
+  .g-row figure { flex: 1 1 calc(50% - 12px); }
+  .g-row figure:nth-child(3) { flex-basis: 100%; }
+  .g-row .g-note { flex-basis: 100%; order: 2; }
   table { font-size: 14px; }
-  th, td { padding: 11px 8px 11px 0; }
+  th, td { padding: 12px 8px 12px 0; }
   td.n, th.n { padding-left: 8px; }
-  td .prod { font-size: 12px; }
-  .links { grid-template-columns: 1fr; }
-  .portrait { width: 140px; }
 }
 </style>
 </head>
 <body>
-<a class="skip" href="#results">본문으로 건너뛰기</a>
+<a class="skip" href="#statement">본문으로 건너뛰기</a>
 
-<header class="hero">
+<header class="hero" id="top">
   <div class="topbar">
-    <a class="me" href="#top" id="top">이후빈</a>
+    <a class="me" href="#top">이후빈</a>
     <nav aria-label="주요 메뉴">
-      <a href="#results">성과</a>
       <a href="#work">작업</a>
+      <a href="#results">성과</a>
       <a href="#process">제작 방식</a>
       <a href="#career">경력</a>
       <a href="#contact">연락</a>
     </nav>
   </div>
-  <div class="hero-body">
-    <div>
-      <h1>촬영장 없이<br>팔리는 광고를<br>만듭니다</h1>
-      <p class="hero-intro">AI 이미지와 AI 영상으로 건강기능식품 커머스 광고를 만드는 영상 PD 이후빈입니다. 2025년 2월부터 광고 소재 <strong>258편</strong>을 만들었고, 광고비 <strong>4억 1,080만 원</strong>으로 <strong>4억 5,782만 원</strong>을 팔았습니다.</p>
-    </div>
-    <div class="frames-wrap">
-    <div class="frames">
-      <figure><img src="ai-02.jpg" alt="초록 배경에서 데일리버닝 제품을 든 모델 광고 이미지" width="2580" height="3438"></figure>
-      <figure><img src="ai-03.jpg" alt="분홍 배경에서 팻버닝 제품을 들고 웃는 모델 광고 이미지" width="2580" height="3438"></figure>
-      <figure><img src="ai-04.jpg" alt="보라색 니트를 입은 모델이 제품 상자를 든 광고 이미지" width="1920" height="1080"></figure>
-    </div>
-    <p class="frames-note">세 장 모두 촬영 없이 AI로 생성한 광고 이미지입니다.</p>
-    </div>
+  <img src="ai-01.png" alt="린넨 위에서 두 손이 검은 세럼 병을 감싸 쥔 제품 사진. 촬영 없이 AI로 생성한 이미지" width="1536" height="1024" fetchpriority="high">
+  <div class="hero-copy">
+    <h1 class="serif">이 사진은<br>찍지 않았습니다</h1>
+    <p>AI 이미지와 AI 영상으로 커머스 광고를 만드는 영상 PD, 이후빈입니다.</p>
   </div>
+  <p class="hero-tag">모델, 조명, 스튜디오 없이 생성형 AI로 만든 세럼 제품 컷입니다.</p>
 </header>
 
 <main>
-  <section id="results" aria-labelledby="results-title">
-    <div class="sec-head">
-      <h2 id="results-title">광고비보다<br>더 팔았습니다</h2>
-      <div>
-        <p class="lede">2025년 2월부터 2026년 10월까지 만든 광고 소재 <b>258편</b>. 광고비 <b>4억 1,080만 원</b>을 써서 <b>4억 5,782만 원</b>의 매출을 냈습니다.</p>
-        <p class="sub">광고를 누르고 바로 산 직접 전환 기준 ROAS 111%입니다. 광고를 본 뒤 나중에 구매한 간접 전환까지 더하면 매출 5억 9,750만 원, ROAS 145%입니다.</p>
-      </div>
+  <section id="statement" class="statement dark" aria-label="한 줄 요약">
+    <p class="big">광고비 <span class="num">4억 1,080만 원</span>으로 <span class="num">4억 5,782만 원</span>을 팔았습니다.</p>
+    <div class="after">
+      <p class="who muted">2025년 2월부터 2026년 10월까지<br>건강기능식품 광고 소재 258편</p>
+      <p>광고를 누르고 바로 산 직접 전환 기준 ROAS 111%입니다. 광고를 본 뒤 나중에 구매한 간접 전환까지 더하면 매출 5억 9,750만 원, ROAS 145%입니다. 촬영 대신 생성으로 제작 방식을 바꿔 제작비는 80% 줄였습니다.</p>
     </div>
-
-    <div class="tables">
-      <div>
-        <p class="t-title">브랜드별 성과</p>
-        <p class="t-desc">세 브랜드, 아홉 개 제품의 광고를 만들었습니다.</p>
-      </div>
-      <div class="scroll">
-        <table>
-          <thead><tr><th scope="col">브랜드</th><th scope="col" class="n">광고비</th><th scope="col" class="n">매출</th><th scope="col" class="n">ROAS</th></tr></thead>
-          <tbody>
-            <tr><td><span class="name">닥터블릿</span><span class="prod">올킬세트, 10일세트, 파비플로라 외</span></td><td class="n">1억 9,297만</td><td class="n">2억 6,021만</td><td class="n roas-hi">135%</td></tr>
-            <tr><td><span class="name">소우코우</span><span class="prod">이소비텍신, 트리플CD, 이소우산</span></td><td class="n">2억 1,540만</td><td class="n">1억 9,412만</td><td class="n">90%<span class="prod">간접 포함 155%</span></td></tr>
-            <tr><td><span class="name">패칫</span><span class="prod">에너짓</span></td><td class="n">243만</td><td class="n">348만</td><td class="n roas-hi">144%</td></tr>
-            <tr class="total"><td>합계 258편</td><td class="n">4억 1,080만</td><td class="n">4억 5,782만</td><td class="n">111%</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="tables">
-      <div>
-        <p class="t-title">매출 상위 8편</p>
-        <p class="t-desc">소재명은 사내 광고 관리 시트에 등록된 이름 그대로입니다.</p>
-      </div>
-      <div class="scroll">
-        <table>
-          <thead><tr><th scope="col">소재명</th><th scope="col" class="n">광고비</th><th scope="col" class="n">매출</th><th scope="col" class="n">ROAS</th></tr></thead>
-          <tbody>
-            <tr><td><span class="name">250716_다프모아모아</span><span class="prod">닥터블릿 10일세트</span></td><td class="n">2,394만</td><td class="n rev-cell">2,914만<span class="bar" style="width:100%"></span></td><td class="n roas-hi">122%</td></tr>
-            <tr><td><span class="name">0326_시너지가장난아냐</span><span class="prod">닥터블릿 올킬세트</span></td><td class="n">2,373만</td><td class="n rev-cell">2,899만<span class="bar" style="width:99%"></span></td><td class="n roas-hi">122%</td></tr>
-            <tr><td><span class="name">260420_소코다프베리</span><span class="prod">소우코우 이소비텍신</span></td><td class="n">1,330만</td><td class="n rev-cell">1,553만<span class="bar" style="width:53%"></span></td><td class="n roas-hi">117%</td></tr>
-            <tr><td><span class="name">260429_(베리)어서이소비텍신</span><span class="prod">소우코우 이소비텍신</span></td><td class="n">1,373만</td><td class="n rev-cell">1,374만<span class="bar" style="width:47%"></span></td><td class="n">100%</td></tr>
-            <tr><td><span class="name">251226_과거의나(B&amp;A모음)</span><span class="prod">소우코우 이소비텍신</span></td><td class="n">1,105만</td><td class="n rev-cell">1,330만<span class="bar" style="width:46%"></span></td><td class="n roas-hi">120%</td></tr>
-            <tr><td><span class="name">251020_보는즉시구매해야해</span><span class="prod">닥터블릿 올킬세트</span></td><td class="n">991만</td><td class="n rev-cell">1,303만<span class="bar" style="width:45%"></span></td><td class="n roas-hi">131%</td></tr>
-            <tr><td><span class="name">250627_올킬얼른가져가세요</span><span class="prod">닥터블릿 올킬세트</span></td><td class="n">1,082만</td><td class="n rev-cell">1,255만<span class="bar" style="width:43%"></span></td><td class="n roas-hi">116%</td></tr>
-            <tr><td><span class="name">260422_어서이소비텍신</span><span class="prod">소우코우 이소비텍신</span></td><td class="n">1,274만</td><td class="n rev-cell">1,231만<span class="bar" style="width:42%"></span></td><td class="n">97%<span class="prod">간접 포함 160%</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <ul class="notes">
-      <li>오래 팔린 소재</li>
-      <li>
-        <ul>
-          <li>다프모아모아는 19개 주차에 걸쳐 팀의 고효율 소재로 기록됐습니다. 고효율 기준은 그 주 ROAS 100% 이상, 매출 50만 원 이상입니다.</li>
-          <li>닥터블릿 고효율 소재 매출 기준으로 제작자 34명 가운데 5위입니다.</li>
-          <li>광고비를 100만 원 이상 쓴 소재 90편 중 58편이 직접 전환만으로 ROAS 100%를 넘겼습니다.</li>
-        </ul>
-      </li>
-    </ul>
-
-    <p class="source">기준: 사내 광고 성과 리포트와 고효율 소재 주간 기록, 2025년 2월부터 2026년 10월까지 이후빈 제작 소재만 집계. 2026년 3월까지는 고효율로 기록된 주간 성과이고, 2026년 4월 이후 소우코우 소재는 전체 집행 성과입니다. 매출은 별도 표기가 없으면 직접 전환 기준입니다.</p>
   </section>
 
-  <section id="work" aria-labelledby="work-title">
-    <div class="sec-head">
-      <h2 id="work-title">작업</h2>
-      <p class="lede">광고 영상, 브랜드 영상, 제품 컷을 생성형 AI로 만듭니다. 모델도, 스튜디오도 따로 섭외하지 않습니다.</p>
+  <section class="strip-sec dark" id="work" aria-labelledby="strip-title">
+    <div class="strip-head">
+      <h2 id="strip-title">광고 이미지</h2>
     </div>
+    <div class="gallery">
+      <div class="g-row">
+        <figure style="--r:.75"><img src="ai-02.jpg" alt="초록 배경에서 데일리버닝 스틱을 든 모델과 제품 정보가 담긴 광고 이미지" width="2580" height="3438" loading="lazy"><figcaption>푸응 데일리버닝 광고</figcaption></figure>
+        <figure style="--r:.75"><img src="ai-03.jpg" alt="분홍 배경에서 팻버닝 제품을 들고 엄지를 든 모델 광고 이미지" width="2580" height="3438" loading="lazy"><figcaption>푸응 팻버닝 광고</figcaption></figure>
+        <figure style="--r:.75"><img src="ai-05.png" alt="린넨 위에 놓인 검은 세럼 병과 금반지, 마른 꽃" width="1086" height="1448" loading="lazy"><figcaption>세럼 정물 컷</figcaption></figure>
+      </div>
+      <div class="g-row">
+        <p class="g-note">모델, 제품, 배경까지 모두 생성했습니다. 가격과 제품 정보 같은 글자는 편집 단계에서 정확하게 얹었습니다.</p>
+        <figure style="--r:1.78"><img src="ai-04.jpg" alt="보라색 니트를 입은 모델이 제품 상자를 볼에 대고 웃는 광고 이미지" width="1920" height="1080" loading="lazy"><figcaption>닥터블릿 제품 모델 컷</figcaption></figure>
+      </div>
+    </div>
+  </section>
 
+  <section aria-labelledby="video-title">
+    <div class="split">
+      <h2 id="video-title">움직이는 광고</h2>
+      <p class="intro">이미지로 만든 장면을 영상으로 이어 붙이고, 목소리와 자막을 얹어 실제 집행 광고로 완성합니다.</p>
+    </div>
     <div class="videos">
       <figure class="video wide">
-        <button class="player" type="button" data-yt="PoFNH6dG_gw" aria-label="건강기능식품 광고 모음 영상 재생">
-          <img src="https://i.ytimg.com/vi/PoFNH6dG_gw/hqdefault.jpg" alt="" loading="lazy">
+        <button class="player" type="button" data-yt="PoFNH6dG_gw" aria-label="건강기능식품 광고 모음 재생">
+          <img src="https://i.ytimg.com/vi/PoFNH6dG_gw/hqdefault.jpg" alt="">
+          <span class="poster-title">건강기능식품 광고 모음</span>
           <span class="play">재생</span>
         </button>
         <figcaption><b>건강기능식품 광고 모음</b><span>닥터블릿헬스케어에서 집행한 커머스 광고를 가로 화면으로 엮었습니다. <a href="https://www.youtube.com/playlist?list=PL2j9wLyZmlhxlLXsoZ20-dTJP9BfHoaUP" target="_blank" rel="noopener">재생목록 전체 보기</a></span></figcaption>
       </figure>
       <figure class="video">
         <button class="player" type="button" data-yt="Z6acP6sND78" aria-label="플로네아 홈페이지 영상 재생">
-          <img src="https://i.ytimg.com/vi/Z6acP6sND78/hqdefault.jpg" alt="" loading="lazy">
+          <img src="https://i.ytimg.com/vi/Z6acP6sND78/hqdefault.jpg" alt="">
+          <span class="poster-title">플로네아 홈페이지 영상</span>
           <span class="play">재생</span>
         </button>
-        <figcaption><b>플로네아 홈페이지 영상</b><span>브랜드 홈페이지 첫 화면에 쓰인 AI 영상입니다.</span></figcaption>
+        <figcaption><b>플로네아 홈페이지</b><span>브랜드 홈페이지 첫 화면에 쓰인 AI 영상입니다.</span></figcaption>
       </figure>
       <figure class="video">
-        <button class="player" type="button" data-yt="aJr4oQIX3lA" aria-label="AI 영상 작업 재생">
-          <img src="https://i.ytimg.com/vi/aJr4oQIX3lA/hqdefault.jpg" alt="" loading="lazy">
+        <button class="player" type="button" data-yt="aJr4oQIX3lA" aria-label="개인 AI 영상 작업 재생">
+          <img src="https://i.ytimg.com/vi/aJr4oQIX3lA/hqdefault.jpg" alt="">
+          <span class="poster-title">개인 AI 영상 작업</span>
           <span class="play">재생</span>
         </button>
-        <figcaption><b>개인 AI 영상 작업</b><span>새 도구를 먼저 실험해 보는 채널입니다. <a href="https://www.instagram.com/aihubin/" target="_blank" rel="noopener">인스타그램 @aihubin</a></span></figcaption>
+        <figcaption><b>개인 작업</b><span>새 도구를 먼저 실험해 보는 채널입니다. <a href="https://www.instagram.com/aihubin/" target="_blank" rel="noopener">@aihubin</a></span></figcaption>
       </figure>
-    </div>
-
-    <div class="stills">
-      <div class="block-title" style="grid-column:1/-1"><h3>AI 생성 광고 이미지</h3></div>
-      <figure><img src="ai-02.jpg" alt="초록 배경에서 데일리버닝 제품을 든 모델 광고 이미지" loading="lazy"><figcaption>푸응 데일리버닝 광고 컷</figcaption></figure>
-      <figure><img src="ai-03.jpg" alt="분홍 배경에서 팻버닝 제품을 들고 웃는 모델 광고 이미지" loading="lazy"><figcaption>푸응 팻버닝 광고 컷</figcaption></figure>
-      <figure><img src="ai-05.png" alt="린넨 천 위에 놓인 세럼 병과 반지, 마른 꽃 이미지" loading="lazy"><figcaption>세럼 제품 컷, 정물 연출</figcaption></figure>
-      <figure class="land"><img src="ai-01.png" alt="린넨 천 위에서 두 손으로 세럼 병을 감싼 제품 이미지" loading="lazy"><figcaption>세럼 제품 컷, 손 연출</figcaption></figure>
-      <figure class="land"><img src="ai-04.jpg" alt="보라색 니트를 입은 모델이 제품 상자를 볼에 대고 웃는 광고 이미지" loading="lazy"><figcaption>다이어트 제품 모델 컷</figcaption></figure>
     </div>
   </section>
 
-  <section id="process" aria-labelledby="process-title">
-    <div class="sec-head">
+  <section id="results" aria-labelledby="results-title" style="padding-top:0">
+    <div class="split">
+      <h2 id="results-title">숫자로 남은 광고</h2>
+      <p class="intro">사내 광고 관리 시트에 남은 기록입니다. 소재명은 등록된 이름 그대로 옮겼습니다.</p>
+    </div>
+
+    <div class="ledger">
+      <div class="ledger-head"><b>브랜드별</b><span class="muted">세 브랜드, 아홉 개 제품</span></div>
+      <div class="scroll">
+        <table>
+          <thead><tr><th scope="col">브랜드</th><th scope="col" class="n">광고비</th><th scope="col" class="n">매출</th><th scope="col" class="n">ROAS</th></tr></thead>
+          <tbody>
+            <tr><td>닥터블릿<span class="sub">올킬세트, 10일세트, 파비플로라 외</span></td><td class="n">1억 9,297만</td><td class="n">2억 6,021만</td><td class="n good">135%</td></tr>
+            <tr><td>소우코우<span class="sub">이소비텍신, 트리플CD, 이소우산</span></td><td class="n">2억 1,540만</td><td class="n">1억 9,412만</td><td class="n">90%<span class="sub">간접 포함 155%</span></td></tr>
+            <tr><td>패칫<span class="sub">에너짓</span></td><td class="n">243만</td><td class="n">348만</td><td class="n good">144%</td></tr>
+            <tr class="total"><td>합계 258편</td><td class="n">4억 1,080만</td><td class="n">4억 5,782만</td><td class="n">111%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="ledger">
+      <div class="ledger-head"><b>매출 상위 8편</b><span class="muted">막대는 매출 규모입니다</span></div>
+      <div class="scroll">
+        <table>
+          <thead><tr><th scope="col">소재명</th><th scope="col" class="n">광고비</th><th scope="col" class="n">매출</th><th scope="col" class="n">ROAS</th></tr></thead>
+          <tbody>
+            <tr><td>250716_다프모아모아<span class="sub">닥터블릿 10일세트</span></td><td class="n">2,394만</td><td class="n">2,914만<span class="bar" style="width:100%"></span></td><td class="n good">122%</td></tr>
+            <tr><td>0326_시너지가장난아냐<span class="sub">닥터블릿 올킬세트</span></td><td class="n">2,373만</td><td class="n">2,899만<span class="bar" style="width:99%"></span></td><td class="n good">122%</td></tr>
+            <tr><td>260420_소코다프베리<span class="sub">소우코우 이소비텍신</span></td><td class="n">1,330만</td><td class="n">1,553만<span class="bar" style="width:53%"></span></td><td class="n good">117%</td></tr>
+            <tr><td>260429_(베리)어서이소비텍신<span class="sub">소우코우 이소비텍신</span></td><td class="n">1,373만</td><td class="n">1,374만<span class="bar" style="width:47%"></span></td><td class="n good">100%</td></tr>
+            <tr><td>251226_과거의나(B&amp;A모음)<span class="sub">소우코우 이소비텍신</span></td><td class="n">1,105만</td><td class="n">1,330만<span class="bar" style="width:46%"></span></td><td class="n good">120%</td></tr>
+            <tr><td>251020_보는즉시구매해야해<span class="sub">닥터블릿 올킬세트</span></td><td class="n">991만</td><td class="n">1,303만<span class="bar" style="width:45%"></span></td><td class="n good">131%</td></tr>
+            <tr><td>250627_올킬얼른가져가세요<span class="sub">닥터블릿 올킬세트</span></td><td class="n">1,082만</td><td class="n">1,255만<span class="bar" style="width:43%"></span></td><td class="n good">116%</td></tr>
+            <tr><td>260422_어서이소비텍신<span class="sub">소우코우 이소비텍신</span></td><td class="n">1,274만</td><td class="n">1,231만<span class="bar" style="width:42%"></span></td><td class="n">97%<span class="sub">간접 포함 160%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="facts split">
+      <p style="margin:0;font-weight:700">오래 팔린 소재</p>
+      <ol>
+        <li><b>19주</b>다프모아모아가 팀의 고효율 소재로 기록된 주차 수입니다. 기준은 그 주 ROAS 100% 이상, 매출 50만 원 이상입니다.</li>
+        <li><b>5위</b>닥터블릿 고효율 소재 매출 기준, 제작자 34명 가운데 순위입니다.</li>
+        <li><b>58편</b>광고비를 100만 원 이상 쓴 소재 90편 중 직접 전환만으로 ROAS 100%를 넘긴 소재 수입니다.</li>
+      </ol>
+    </div>
+
+    <p class="source">기준: 사내 광고 성과 리포트와 고효율 소재 주간 기록, 2025년 2월부터 2026년 10월까지 이후빈 제작 소재만 집계했습니다. 2026년 3월까지는 고효율로 기록된 주간 성과이고, 2026년 4월 이후 소우코우 소재는 전체 집행 성과입니다. 매출은 따로 표기하지 않으면 직접 전환 기준입니다.</p>
+  </section>
+
+  <section id="process" class="dark" aria-labelledby="process-title">
+    <div class="split">
       <h2 id="process-title">제작 방식</h2>
-      <p class="lede">촬영을 생성으로 바꾸고 제작비를 80% 줄였습니다. 대본부터 집행 후 수정까지 혼자 돌리는 순서입니다.</p>
+      <p class="intro">대본부터 집행 후 수정까지 혼자 돌리는 순서입니다.</p>
     </div>
     <ol class="steps">
       <li><span class="what">대본</span><span class="tools">ChatGPT, Claude</span><span class="how">첫 3초 후킹을 네 가지 유형 중에서 고르고, 1분 영상은 450~550자로 씁니다.</span></li>
@@ -399,9 +348,9 @@ footer { padding: 24px var(--gutter) 40px; color: var(--ink-2); font-size: 13px;
   </section>
 
   <section id="career" aria-labelledby="career-title">
-    <div class="sec-head">
+    <div class="split">
       <h2 id="career-title">경력</h2>
-      <p class="lede">헬스케어, 뷰티, 소비재 광고를 4년 넘게 기획하고 찍고 편집했습니다.</p>
+      <p class="intro">헬스케어, 뷰티, 소비재 광고를 4년 넘게 기획하고 찍고 편집했습니다.</p>
     </div>
     <ul class="career">
       <li><span class="when">2025.02 ~ 현재</span><div><p class="co">닥터블릿헬스케어</p><p class="role">영상 PD, AI 워크플로 리드</p><p>닥터블릿, 푸응, 소우코우, 패칫, 플로네아 광고를 만들었습니다. 사내에 AI 영상 제작 방식을 도입하고 팀 교육을 맡았습니다.</p></div></li>
@@ -412,29 +361,38 @@ footer { padding: 24px var(--gutter) 40px; color: var(--ink-2); font-size: 13px;
     </ul>
   </section>
 
-  <section id="contact" aria-labelledby="contact-title">
+  <section id="contact" class="contact-sec dark" aria-labelledby="contact-title">
     <div class="contact">
-      <img class="portrait" src="profile.jpg" alt="이후빈 프로필 사진" loading="lazy">
+      <h2 id="contact-title">다음 광고를<br>같이 만들어요</h2>
       <div>
-        <h2 id="contact-title" style="margin-bottom:24px">연락</h2>
         <a class="mail" href="mailto:gnqls96@gmail.com">gnqls96@gmail.com</a>
         <ul class="links">
           <li><span>전화</span><a href="tel:010-6626-9374">010-6626-9374</a></li>
           <li><span>인스타그램</span><a href="https://www.instagram.com/aihubin/" target="_blank" rel="noopener">@aihubin</a></li>
           <li><span>유튜브</span><a href="https://youtube.com/@HUSTV_official" target="_blank" rel="noopener">@HUSTV_official</a></li>
         </ul>
+        <div class="portrait-row">
+          <img class="portrait" src="profile.jpg" alt="이후빈 프로필 사진" loading="lazy">
+          <p>이 사진은 직접 찍었습니다.</p>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
+<footer class="dark">
   <span>© 2026 이후빈</span>
   <span>서울</span>
 </footer>
 
 <script>
 document.querySelectorAll('.player').forEach(function (btn) {
+  var thumb = btn.querySelector('img');
+  if (thumb) {
+    var fail = function () { thumb.remove(); btn.classList.add('no-thumb'); };
+    thumb.addEventListener('error', fail);
+    if (thumb.complete && thumb.naturalWidth === 0) fail();
+  }
   btn.addEventListener('click', function () {
     var id = btn.getAttribute('data-yt');
     var f = document.createElement('iframe');
