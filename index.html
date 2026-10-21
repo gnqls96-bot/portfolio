@@ -1,598 +1,454 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>이후빈 — Video PD & AI Workflow</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.min.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이후빈 | AI 이미지·영상 광고 PD</title>
+<meta name="description" content="AI 이미지와 AI 영상으로 건강기능식품 커머스 광고를 만드는 영상 PD 이후빈의 포트폴리오. 광고 소재 258편, 광고비 4억 1,080만 원, 매출 4억 5,782만 원.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;500;700&display=swap">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #0c0c0c;
-  --white: #efefef;
-  --gray: #777;
-  --gray2: #2a2a2a;
-  --accent: #ff3c1f;
-  --f: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+  --paper: #edefeb;
+  --paper-2: #e2e5df;
+  --ink: #16181b;
+  --ink-2: #464b52;
+  --rule: #c5c9c2;
+  --key: #2340f0;
+  --key-deep: #1a2fc0;
+  --on-key: #eef0ff;
+  --display: 'Black Han Sans', 'Apple SD Gothic Neo', sans-serif;
+  --text: 'Gothic A1', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --gutter: clamp(16px, 4vw, 56px);
 }
+*, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--white); font-family: var(--f); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
-
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: grid; grid-template-columns: auto 1fr auto;
-  align-items: center; gap: 24px;
-  padding: 18px 40px;
-  background: rgba(12,12,12,0.9); backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--gray2);
-}
-.nav-id { line-height: 1.3; }
-.nav-name { font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
-.nav-subtitle { font-size: 11px; font-weight: 400; color: var(--gray); margin-top: 1px; }
-.nav-center { display: flex; gap: 28px; justify-content: center; align-items: center; list-style: none; }
-.nav-center a { font-size: 12px; font-weight: 400; color: var(--gray); letter-spacing: .03em; transition: color .2s; }
-.nav-center a:hover { color: var(--white); }
-.nav-social { display: flex; align-items: center; gap: 6px; }
-.nav-social-link {
-  font-size: 12px; font-weight: 400; color: var(--gray);
-  letter-spacing: .03em; transition: color .2s;
-}
-.nav-social-link:hover { color: var(--white); }
-.nav-right { display: flex; align-items: center; gap: 10px; }
-.nav-status {
-  display: flex; align-items: center; gap: 7px;
-  font-size: 12px; color: var(--white);
-  border: 1px solid var(--gray2); border-radius: 100px;
-  padding: 7px 14px;
-}
-.nav-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; flex-shrink: 0; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-
-/* HERO */
-.hero {
-  position: relative; height: 100vh; min-height: 600px;
-  display: flex; align-items: center; justify-content: center;
-  border-bottom: 1px solid var(--gray2); overflow: hidden;
-}
-.hero-bg {
-  position: absolute; inset: 0; z-index: 1;
-  display: flex; align-items: center; justify-content: center;
-  pointer-events: none; user-select: none;
-  font-size: clamp(80px, 14vw, 200px);
-  font-weight: 900; letter-spacing: -.04em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.12);
-  white-space: nowrap;
-}
-.hero-photo-wrap { position: relative; z-index: 2; width: 300px; }
-.hero-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 200px; display: block; }
-.hero-photo-ph {
-  width: 100%; aspect-ratio: 3/4; background: var(--gray2); border-radius: 200px;
-  display: flex; align-items: center; justify-content: center;
-}
-.hero-photo-ph p { font-size: 12px; color: var(--gray); letter-spacing: .06em; text-transform: uppercase; }
-.hero-bottom-left {
-  position: absolute; bottom: 40px; left: 40px; z-index: 3; max-width: 400px;
-}
-.hero-bottom-left p {
-  font-size: clamp(22px, 2.8vw, 38px);
-  font-weight: 700; color: var(--white);
-  line-height: 1.25; letter-spacing: -.03em;
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 17px;
+  line-height: 1.7;
   word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
 }
-.hero-bottom-left p .acc { color: var(--accent); font-weight: 600; }
-.hero-bottom-right {
-  position: absolute; bottom: 40px; right: 40px; z-index: 3;
-  display: flex; gap: 36px; align-items: flex-end;
-}
-.hero-stat { text-align: right; }
-.hero-stat-n { display: block; font-size: 28px; font-weight: 700; letter-spacing: -.04em; color: var(--white); }
-.hero-stat-l { font-size: 10px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--key); outline-offset: 3px; }
+.skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--paper); padding: 8px 12px; z-index: 10; }
+.skip:focus { left: 8px; }
 
-/* MARQUEE */
-.marquee-wrap { overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--gray2); padding: 13px 0; }
-.marquee-inner { display: inline-block; animation: mq 22s linear infinite; }
-.marquee-inner span { font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--gray); padding: 0 28px; }
-.marquee-inner span.dot { color: var(--accent); padding: 0; }
-@keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+/* ---------- Hero: blue screen ---------- */
+.hero {
+  background: var(--key);
+  color: var(--on-key);
+  min-height: 100svh;
+  padding: 0 var(--gutter) clamp(32px, 5vw, 64px);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+}
+.hero :focus-visible { outline-color: var(--on-key); }
+.topbar {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 24px; padding: 22px 0;
+}
+.topbar .me { font-weight: 700; font-size: 16px; text-decoration: none; }
+.topbar nav { display: flex; gap: clamp(14px, 2.4vw, 32px); flex-wrap: wrap; justify-content: flex-end; }
+.topbar nav a { font-size: 15px; text-decoration: none; opacity: .86; }
+.topbar nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
 
-/* SECTION HEADER */
-.sec-header { display: flex; justify-content: space-between; align-items: center; padding: 40px 40px 0; }
-.sec-label { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); }
-.sec-num { font-size: 11px; color: var(--gray); }
+.hero-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+  padding-top: clamp(24px, 4vh, 56px);
+}
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(50px, 7.4vw, 132px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 0 0 clamp(20px, 3vw, 36px);
+}
+.hero-intro { max-width: 34em; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.75; margin: 0; }
+.hero-intro strong { font-weight: 700; }
 
-/* WORK */
-.work-entry {
-  display: grid; grid-template-columns: 260px 1fr;
-  border-top: 1px solid var(--gray2); margin-top: 32px;
-  opacity: 0; transform: translateY(16px);
-  transition: opacity .55s ease, transform .55s ease;
+.frames {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 40px;
 }
-.work-entry.vis { opacity: 1; transform: none; }
-.work-entry:hover .work-media img,
-.work-entry:hover .work-media video { transform: scale(1.02); }
-.work-left {
-  padding: 36px 32px; border-right: 1px solid var(--gray2);
-  display: flex; flex-direction: column; justify-content: space-between;
-}
-.work-idx { font-size: 11px; font-weight: 500; letter-spacing: .1em; color: var(--gray); margin-bottom: 16px; }
-.work-co { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
-.work-title { font-size: 22px; font-weight: 700; letter-spacing: -.02em; line-height: 1.3; margin-bottom: 16px; word-break: keep-all; }
-.work-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 0; }
-.work-tag {
-  font-size: 11px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
-  color: var(--accent); border: 1px solid rgba(255,60,31,.3); padding: 4px 10px; border-radius: 4px;
-}
-.work-meta-bottom { margin-top: 28px; }
-.work-year { font-size: 12px; font-weight: 300; color: var(--gray); margin-bottom: 12px; }
-.work-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12px; font-weight: 500; color: var(--gray);
-  border: 1px solid var(--gray2); border-radius: 100px;
-  padding: 8px 16px; transition: color .2s, border-color .2s;
-}
-.work-link:hover { color: var(--white); border-color: var(--gray); }
-.work-link svg { width: 11px; height: 11px; }
-.work-media { overflow: hidden; min-height: 380px; background: #161616; }
-.work-media.work-media-shorts { min-height: 0; }
-.work-media.work-media-shorts iframe {
-  width: 100%; height: 100%;
-  min-height: 560px;
-  display: block;
-}
-.work-media img, .work-media video {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform .6s cubic-bezier(.25,.46,.45,.94);
-}
-.work-ph {
-  width: 100%; height: 100%; min-height: 380px;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 10px;
-}
-.work-ph div { width: 24px; height: 1px; background: var(--gray2); }
-.work-ph p { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #333; }
+.frames figure { margin: 0; flex: 0 0 41%; position: relative; }
+.frames figure + figure { margin-left: -14%; }
+.frames img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; outline: 6px solid var(--key); }
+.frames figure:nth-child(1) { z-index: 1; transform: translateY(-6%); }
+.frames figure:nth-child(2) { z-index: 2; transform: translateY(-22%); }
+.frames figure:nth-child(3) { z-index: 3; }
+.frames-note { font-size: 13px; opacity: .8; margin: 16px 0 0; }
 
-/* ABOUT */
-#about {
-  padding: 80px 40px; border-top: 1px solid var(--gray2);
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+@media (prefers-reduced-motion: no-preference) {
+  .frames figure { animation: keyin .9s cubic-bezier(.2, .7, .2, 1) both; }
+  .frames figure:nth-child(1) { animation-delay: .15s; }
+  .frames figure:nth-child(2) { animation-delay: .3s; }
+  .frames figure:nth-child(3) { animation-delay: .45s; }
+  @keyframes keyin { from { opacity: 0; translate: 0 40px; } to { opacity: 1; translate: 0 0; } }
 }
-.about-big { font-size: clamp(30px, 3.8vw, 50px); font-weight: 700; letter-spacing: -.04em; line-height: 1.2; margin-bottom: 24px; word-break: keep-all; }
-.about-big em { font-style: normal; color: var(--accent); }
-.about-body { font-size: 15px; font-weight: 300; color: var(--gray); line-height: 1.85; word-break: keep-all; }
-.about-body b { color: var(--white); font-weight: 500; }
-.sk-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--gray2); }
-.sk-name { font-size: 13px; font-weight: 400; }
-.sk-lv { font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--gray); }
-.sk-lv.on { color: var(--accent); }
 
-/* CAREER */
-#career { border-top: 1px solid var(--gray2); }
-.career-entry {
-  display: grid; grid-template-columns: 200px 1fr 110px;
-  padding: 34px 40px; border-bottom: 1px solid var(--gray2);
-  transition: background .2s, opacity .5s, transform .5s;
-  opacity: 0; transform: translateY(12px);
+/* ---------- Sections ---------- */
+section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
+.sec-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(20px, 4vw, 64px);
+  margin-bottom: clamp(36px, 5vw, 64px);
 }
-.career-entry:hover { background: #141414; }
-.career-entry.vis { opacity: 1; transform: none; }
-.c-period { font-size: 12px; font-weight: 300; color: var(--gray); line-height: 1.7; padding-top: 5px; }
-.c-co { font-size: 20px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 4px; }
-.c-role { font-size: 12px; font-weight: 400; color: var(--gray); margin-bottom: 10px; }
-.c-desc { font-size: 13px; font-weight: 300; color: var(--gray); line-height: 1.75; word-break: keep-all; max-width: 540px; }
-.c-kpi { text-align: right; }
-.kpi-n { display: block; font-size: 26px; font-weight: 700; letter-spacing: -.03em; color: var(--accent); }
-.kpi-l { font-size: 10px; font-weight: 400; letter-spacing: .07em; text-transform: uppercase; color: var(--gray); }
-
-/* CONTACT */
-#contact {
-  border-top: 1px solid var(--gray2); padding: 80px 40px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(36px, 4.6vw, 68px);
+  line-height: 1.08;
+  margin: 0;
 }
-.contact-big { font-size: clamp(28px, 4vw, 54px); font-weight: 700; letter-spacing: -.04em; line-height: 1.2; word-break: keep-all; }
-.contact-big em { font-style: normal; color: var(--accent); }
-.contact-sub { font-size: 14px; font-weight: 300; color: var(--gray); margin-top: 16px; line-height: 1.75; word-break: keep-all; }
-.clinks { display: flex; flex-direction: column; }
-.clink {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 20px 0; border-bottom: 1px solid var(--gray2);
-  transition: padding-left .2s;
+.lede { font-size: clamp(20px, 2.1vw, 30px); line-height: 1.5; font-weight: 500; margin: 0; max-width: 26em; }
+.lede b { font-weight: 700; }
+.sub { color: var(--ink-2); margin: 18px 0 0; max-width: 36em; }
+
+/* ---------- Results ---------- */
+#results { border-bottom: 1px solid var(--rule); }
+.tables { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(20px, 4vw, 64px); }
+.tables + .tables { margin-top: clamp(48px, 6vw, 80px); }
+.t-title { font-size: 18px; font-weight: 700; margin: 0 0 6px; }
+.t-desc { color: var(--ink-2); font-size: 15px; margin: 0; max-width: 22em; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 15px; }
+th, td { text-align: left; padding: 13px 12px 13px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 500; color: var(--ink-2); font-size: 14px; white-space: nowrap; }
+td.n, th.n { text-align: right; white-space: nowrap; padding-right: 0; padding-left: 16px; }
+td .prod { display: block; color: var(--ink-2); font-size: 13px; }
+tr.total td { font-weight: 700; border-bottom: 2px solid var(--ink); }
+tr.total td:first-child::before { content: none; }
+.name { font-weight: 500; }
+.rev-cell { position: relative; }
+.bar { display: block; height: 4px; background: var(--key); margin-top: 7px; margin-left: auto; border-radius: 2px; }
+.roas-hi { color: var(--key-deep); font-weight: 700; }
+.mark { color: var(--key-deep); }
+.notes { list-style: none; margin: clamp(40px, 5vw, 64px) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(20px, 4vw, 64px); }
+.notes > li:first-child { font-weight: 700; font-size: 18px; }
+.notes ul { margin: 0; padding: 0 0 0 1.1em; }
+.notes ul li { font-weight: 400; font-size: 17px; margin-bottom: 10px; }
+.source { color: var(--ink-2); font-size: 13px; line-height: 1.6; margin: 32px 0 0; max-width: 60em; }
+
+/* ---------- Work ---------- */
+#work { background: var(--paper-2); }
+.videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+.videos .wide { grid-column: 1 / -1; }
+.video figcaption { padding: 14px 0 0; }
+.video figcaption b { display: block; font-size: 18px; }
+.video figcaption span { color: var(--ink-2); font-size: 15px; }
+.video { margin: 0; }
+.player {
+  position: relative; display: block; width: 100%; aspect-ratio: 16 / 9;
+  border: 0; padding: 0; cursor: pointer; overflow: hidden; border-radius: 4px;
+  background: var(--ink) center / cover no-repeat;
 }
-.clink:first-child { border-top: 1px solid var(--gray2); }
-.clink:hover { padding-left: 6px; }
-.clink-l { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); }
-.clink-v { font-size: 14px; font-weight: 400; color: var(--white); transition: color .2s; }
-.clink:hover .clink-v { color: var(--accent); }
-.clink-arr { font-size: 14px; color: var(--gray); transition: transform .2s, color .2s; }
-.clink:hover .clink-arr { transform: translateX(4px); color: var(--white); }
-
-/* SLIDER */
-.img-slider { width:100%; height:100%; min-height:500px; position:relative; background:#111; }
-.img-slider .slide {
-  position:absolute; inset:0;
-  width:100%; height:100%; min-height:500px;
-  object-fit:contain; display:block;
-  opacity:0; transition:opacity .5s ease;
+.player img { width: 100%; height: 100%; object-fit: cover; }
+.player .play {
+  position: absolute; left: 16px; bottom: 16px;
+  background: var(--key); color: var(--on-key);
+  font: 700 15px var(--text); padding: 10px 16px; border-radius: 3px;
 }
-.img-slider .slide.active { opacity:1; }
-.slider-prev, .slider-next {
-  position:absolute; top:50%; transform:translateY(-50%);
-  background:rgba(0,0,0,.5); color:var(--white);
-  border:none; border-radius:50%;
-  width:36px; height:36px; font-size:16px;
-  cursor:pointer; z-index:10;
-  transition:background .2s;
-  display:flex; align-items:center; justify-content:center;
+.player:hover .play { background: var(--key-deep); }
+.player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+.stills { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 22px); margin-top: clamp(56px, 7vw, 96px); }
+.stills figure { margin: 0; grid-column: span 2; }
+.stills figure.land { grid-column: span 3; }
+.stills img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; }
+.stills figure.land img { aspect-ratio: 3 / 2; }
+.stills figcaption { font-size: 14px; color: var(--ink-2); padding-top: 10px; }
+.block-title { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 0 0 20px; }
+.block-title h3 { font-size: 20px; margin: 0; }
+.block-title a { font-size: 15px; }
+
+/* ---------- Process ---------- */
+#process { border-bottom: 1px solid var(--rule); }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.steps li {
+  counter-increment: s;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: clamp(12px, 3vw, 48px);
+  padding: 22px 0;
+  border-top: 1px solid var(--rule);
 }
-.slider-prev:hover, .slider-next:hover { background:rgba(0,0,0,.8); }
-.slider-prev { left:12px; }
-.slider-next { right:12px; }
+.steps li:last-child { border-bottom: 1px solid var(--rule); }
+.steps .what { font-weight: 700; font-size: 19px; }
+.steps .what::before { content: counter(s) "  "; font-family: var(--display); font-weight: 400; color: var(--key); margin-right: 10px; }
+.steps .tools { color: var(--ink); }
+.steps .how { color: var(--ink-2); }
 
-/* FOOTER */
-footer { padding: 20px 40px; display: flex; justify-content: space-between; border-top: 1px solid var(--gray2); }
-footer p { font-size: 12px; font-weight: 300; color: var(--gray); }
+/* ---------- Career ---------- */
+.career { list-style: none; margin: 0; padding: 0; }
+.career li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(12px, 4vw, 64px);
+  padding: 26px 0; border-top: 1px solid var(--rule);
+}
+.career li:last-child { border-bottom: 1px solid var(--rule); }
+.career .when { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.career .co { font-weight: 700; font-size: 20px; margin: 0; }
+.career .role { color: var(--ink-2); margin: 2px 0 8px; font-size: 15px; }
+.career p { margin: 0; max-width: 40em; }
 
-/* REVEAL */
-.rev { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-.rev.vis { opacity: 1; transform: none; }
+/* ---------- Contact ---------- */
+#contact { padding-bottom: clamp(48px, 6vw, 80px); }
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(20px, 4vw, 64px); align-items: start; }
+.portrait { width: min(220px, 60%); aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; }
+.mail {
+  display: inline-block; font-weight: 700; letter-spacing: -0.02em;
+  font-size: clamp(28px, 4.6vw, 68px); line-height: 1.1; text-decoration: none;
+  color: var(--key); overflow-wrap: anywhere;
+}
+.mail:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
+.links { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, max-content); gap: 8px 40px; }
+.links span { display: block; color: var(--ink-2); font-size: 14px; }
+.links a { font-weight: 500; }
+footer { padding: 24px var(--gutter) 40px; color: var(--ink-2); font-size: 13px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  nav { grid-template-columns: 1fr auto; padding: 14px 20px; }
-  .nav-center, .nav-social { display: none; }
-  .hero-bottom-left, .hero-bottom-right { display: none; }
-  .hero-photo-wrap { width: 220px; }
-  .work-entry { grid-template-columns: 1fr; }
-  .work-left { border-right: none; border-bottom: 1px solid var(--gray2); padding: 24px 20px; }
-  .work-media, .work-ph { min-height: 240px; }
-  #about { grid-template-columns: 1fr; gap: 48px; padding: 48px 20px; }
-  .career-entry { grid-template-columns: 1fr; gap: 12px; padding: 28px 20px; }
-  .c-kpi { text-align: left; }
-  #contact { grid-template-columns: 1fr; gap: 48px; padding: 56px 20px; }
-  .sec-header { padding: 36px 20px 0; }
-  footer { padding: 20px; flex-direction: column; gap: 6px; }
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hero { min-height: 0; }
+  .hero-body { grid-template-columns: 1fr; align-items: start; }
+  .frames { padding-top: 8px; }
+  .frames { padding-top: 24px; }
+  .sec-head, .tables, .notes, .career li, .contact { grid-template-columns: 1fr; }
+  .steps li { grid-template-columns: 1fr; gap: 4px; }
+  .links { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .topbar { flex-direction: column; gap: 10px; }
+  .topbar nav { justify-content: flex-start; }
+  .videos { grid-template-columns: 1fr; }
+  .stills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stills figure, .stills figure.land { grid-column: span 1; }
+  .stills figure.land, .stills figure:nth-of-type(3) { grid-column: 1 / -1; }
+  table { font-size: 14px; }
+  th, td { padding: 11px 8px 11px 0; }
+  td.n, th.n { padding-left: 8px; }
+  td .prod { font-size: 12px; }
+  .links { grid-template-columns: 1fr; }
+  .portrait { width: 140px; }
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#results">본문으로 건너뛰기</a>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-id">
-    <div class="nav-name">이후빈</div>
-    <div class="nav-subtitle">Video PD × AI Workflow Lead</div>
+<header class="hero">
+  <div class="topbar">
+    <a class="me" href="#top" id="top">이후빈</a>
+    <nav aria-label="주요 메뉴">
+      <a href="#results">성과</a>
+      <a href="#work">작업</a>
+      <a href="#process">제작 방식</a>
+      <a href="#career">경력</a>
+      <a href="#contact">연락</a>
+    </nav>
   </div>
-  <ul class="nav-center">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#career">Career</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="https://youtube.com/@HUSTV_official" target="_blank">YouTube</a></li>
-    <li><a href="https://instagram.com/aihubin" target="_blank">Instagram</a></li>
-  </ul>
-  <div class="nav-right">
-    <div class="nav-status">
-      <span class="nav-dot"></span>
-      이직 가능
+  <div class="hero-body">
+    <div>
+      <h1>촬영장 없이<br>팔리는 광고를<br>만듭니다</h1>
+      <p class="hero-intro">AI 이미지와 AI 영상으로 건강기능식품 커머스 광고를 만드는 영상 PD 이후빈입니다. 2025년 2월부터 광고 소재 <strong>258편</strong>을 만들었고, 광고비 <strong>4억 1,080만 원</strong>으로 <strong>4억 5,782만 원</strong>을 팔았습니다.</p>
+    </div>
+    <div class="frames-wrap">
+    <div class="frames">
+      <figure><img src="ai-02.jpg" alt="초록 배경에서 데일리버닝 제품을 든 모델 광고 이미지" width="2580" height="3438"></figure>
+      <figure><img src="ai-03.jpg" alt="분홍 배경에서 팻버닝 제품을 들고 웃는 모델 광고 이미지" width="2580" height="3438"></figure>
+      <figure><img src="ai-04.jpg" alt="보라색 니트를 입은 모델이 제품 상자를 든 광고 이미지" width="1920" height="1080"></figure>
+    </div>
+    <p class="frames-note">세 장 모두 촬영 없이 AI로 생성한 광고 이미지입니다.</p>
     </div>
   </div>
-</nav>
+</header>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-bg">LEEHUBIN</div>
-  <div class="hero-photo-wrap">
-    <!-- 프로필 사진: <img src="images/profile.jpg" class="hero-photo" alt="이후빈"> -->
-    <img src="profile.jpg" class="hero-photo" alt="이후빈">
-  </div>
-  <div class="hero-bottom-left">
-    <p>촬영 없이 만든 광고로<br><span class="acc">7억을 팔았습니다.</span></p>
-  </div>
-  <div class="hero-bottom-right">
-    <div class="hero-stat">
-      <span class="hero-stat-n">4.4년</span>
-      <span class="hero-stat-l">총 경력</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-n">5+</span>
-      <span class="hero-stat-l">주요 브랜드</span>
-    </div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-inner">
-    <span>Video PD</span><span class="dot"> · </span>
-    <span>AI Workflow</span><span class="dot"> · </span>
-    <span>Veo 3</span><span class="dot"> · </span>
-    <span>Kling AI</span><span class="dot"> · </span>
-    <span>Nano banana</span><span class="dot"> · </span>
-    <span>ComfyUI</span><span class="dot"> · </span>
-    <span>광고 영상 기획</span><span class="dot"> · </span>
-    <span>촬영 연출</span><span class="dot"> · </span>
-    <span>헬스케어 · 뷰티</span><span class="dot"> · </span>
-    <span>Video PD</span><span class="dot"> · </span>
-    <span>AI Workflow</span><span class="dot"> · </span>
-    <span>Veo 3</span><span class="dot"> · </span>
-    <span>Kling AI</span><span class="dot"> · </span>
-    <span>Nano banana</span><span class="dot"> · </span>
-    <span>ComfyUI</span><span class="dot"> · </span>
-    <span>광고 영상 기획</span><span class="dot"> · </span>
-    <span>촬영 연출</span><span class="dot"> · </span>
-    <span>헬스케어 · 뷰티</span><span class="dot"> · </span>
-  </div>
-</div>
-
-<!-- WORK -->
-<section id="work">
-  <div class="sec-header rev">
-    <span class="sec-label">Selected Work</span>
-    <span class="sec-num">01</span>
-  </div>
-
-  <!-- 01 닥터블릿 — 구매 전환 광고 -->
-  <div class="work-entry">
-    <div class="work-left">
+<main>
+  <section id="results" aria-labelledby="results-title">
+    <div class="sec-head">
+      <h2 id="results-title">광고비보다<br>더 팔았습니다</h2>
       <div>
-        <p class="work-idx">01</p>
-        <p class="work-co">닥터블릿헬스케어</p>
-        <h3 class="work-title">구매 전환 광고 영상</h3>
-        <div class="work-tags">
-          <span class="work-tag">Ad Film</span>
-          <span class="work-tag">Performance</span>
-        </div>
-      </div>
-      <div class="work-meta-bottom">
-        <p class="work-year">2025.02 — 현재</p>
-        <p style="font-size:11px;color:var(--accent);margin-bottom:8px;letter-spacing:.03em;">더 많은 영상은 아래 링크에서 확인하세요</p>
-        <a class="work-link" href="https://www.youtube.com/playlist?list=PL2j9wLyZmlhxlLXsoZ20-dTJP9BfHoaUP" target="_blank">
-          YouTube에서 보기
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2V8"/></svg>
-        </a>
+        <p class="lede">2025년 2월부터 2026년 10월까지 만든 광고 소재 <b>258편</b>. 광고비 <b>4억 1,080만 원</b>을 써서 <b>4억 5,782만 원</b>의 매출을 냈습니다.</p>
+        <p class="sub">광고를 누르고 바로 산 직접 전환 기준 ROAS 111%입니다. 광고를 본 뒤 나중에 구매한 간접 전환까지 더하면 매출 5억 9,750만 원, ROAS 145%입니다.</p>
       </div>
     </div>
-    <div class="work-media" style="min-height:380px;">
-      <iframe
-        src="https://www.youtube.com/embed/PoFNH6dG_gw?autoplay=1&mute=1&loop=1&playlist=PoFNH6dG_gw&controls=0&modestbranding=1&rel=0"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-        style="width:100%;height:100%;min-height:380px;display:block;">
-      </iframe>
-    </div>
-  </div>
 
-  <!-- 02 닥터블릿 — AI 영상 -->
-  <div class="work-entry">
-    <div class="work-left">
+    <div class="tables">
       <div>
-        <p class="work-idx">02</p>
-        <p class="work-co">닥터블릿헬스케어</p>
-        <h3 class="work-title">AI 영상</h3>
-        <div class="work-tags">
-          <span class="work-tag">AI Video</span>
-          <span class="work-tag">AI Image</span>
-        </div>
+        <p class="t-title">브랜드별 성과</p>
+        <p class="t-desc">세 브랜드, 아홉 개 제품의 광고를 만들었습니다.</p>
       </div>
-      <div class="work-meta-bottom">
-        <p class="work-year">2025.02 — 현재</p>
-        <p style="font-size:11px;color:var(--accent);margin-bottom:8px;letter-spacing:.03em;">더 많은 영상은 아래 링크에서 확인하세요</p>
-        <a class="work-link" href="https://www.youtube.com/playlist?list=PL2j9wLyZmlhxlLXsoZ20-dTJP9BfHoaUP" target="_blank">
-          YouTube에서 보기
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2V8"/></svg>
-        </a>
+      <div class="scroll">
+        <table>
+          <thead><tr><th scope="col">브랜드</th><th scope="col" class="n">광고비</th><th scope="col" class="n">매출</th><th scope="col" class="n">ROAS</th></tr></thead>
+          <tbody>
+            <tr><td><span class="name">닥터블릿</span><span class="prod">올킬세트, 10일세트, 파비플로라 외</span></td><td class="n">1억 9,297만</td><td class="n">2억 6,021만</td><td class="n roas-hi">135%</td></tr>
+            <tr><td><span class="name">소우코우</span><span class="prod">이소비텍신, 트리플CD, 이소우산</span></td><td class="n">2억 1,540만</td><td class="n">1억 9,412만</td><td class="n">90%<span class="prod">간접 포함 155%</span></td></tr>
+            <tr><td><span class="name">패칫</span><span class="prod">에너짓</span></td><td class="n">243만</td><td class="n">348만</td><td class="n roas-hi">144%</td></tr>
+            <tr class="total"><td>합계 258편</td><td class="n">4억 1,080만</td><td class="n">4억 5,782만</td><td class="n">111%</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <div class="work-media" style="min-height:380px;">
-      <iframe
-        src="https://www.youtube.com/embed/Z6acP6sND78?autoplay=1&mute=1&loop=1&playlist=Z6acP6sND78&controls=0&modestbranding=1&rel=0"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-        style="width:100%;height:100%;min-height:380px;display:block;">
-      </iframe>
-    </div>
-  </div>
 
-  <!-- 03 룰루레몬 -->
-  <div class="work-entry">
-    <div class="work-left">
+    <div class="tables">
       <div>
-        <p class="work-idx">03</p>
-        <p class="work-co">마일스톤컴퍼니</p>
-        <h3 class="work-title">lululemon Korea SNS</h3>
-        <div class="work-tags">
-          <span class="work-tag">Brand</span>
-          <span class="work-tag">SNS</span>
-        </div>
+        <p class="t-title">매출 상위 8편</p>
+        <p class="t-desc">소재명은 사내 광고 관리 시트에 등록된 이름 그대로입니다.</p>
       </div>
-      <div class="work-meta-bottom">
-        <p class="work-year">2024.01 — 2025.01</p>
-        <p style="font-size:11px;color:var(--accent);margin-bottom:8px;letter-spacing:.03em;">더 많은 영상은 아래 링크에서 확인하세요</p>
-        <a class="work-link" href="https://www.instagram.com/lululemonkr/reels/" target="_blank">
-          Instagram에서 보기
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2V8"/></svg>
-        </a>
+      <div class="scroll">
+        <table>
+          <thead><tr><th scope="col">소재명</th><th scope="col" class="n">광고비</th><th scope="col" class="n">매출</th><th scope="col" class="n">ROAS</th></tr></thead>
+          <tbody>
+            <tr><td><span class="name">250716_다프모아모아</span><span class="prod">닥터블릿 10일세트</span></td><td class="n">2,394만</td><td class="n rev-cell">2,914만<span class="bar" style="width:100%"></span></td><td class="n roas-hi">122%</td></tr>
+            <tr><td><span class="name">0326_시너지가장난아냐</span><span class="prod">닥터블릿 올킬세트</span></td><td class="n">2,373만</td><td class="n rev-cell">2,899만<span class="bar" style="width:99%"></span></td><td class="n roas-hi">122%</td></tr>
+            <tr><td><span class="name">260420_소코다프베리</span><span class="prod">소우코우 이소비텍신</span></td><td class="n">1,330만</td><td class="n rev-cell">1,553만<span class="bar" style="width:53%"></span></td><td class="n roas-hi">117%</td></tr>
+            <tr><td><span class="name">260429_(베리)어서이소비텍신</span><span class="prod">소우코우 이소비텍신</span></td><td class="n">1,373만</td><td class="n rev-cell">1,374만<span class="bar" style="width:47%"></span></td><td class="n">100%</td></tr>
+            <tr><td><span class="name">251226_과거의나(B&amp;A모음)</span><span class="prod">소우코우 이소비텍신</span></td><td class="n">1,105만</td><td class="n rev-cell">1,330만<span class="bar" style="width:46%"></span></td><td class="n roas-hi">120%</td></tr>
+            <tr><td><span class="name">251020_보는즉시구매해야해</span><span class="prod">닥터블릿 올킬세트</span></td><td class="n">991만</td><td class="n rev-cell">1,303만<span class="bar" style="width:45%"></span></td><td class="n roas-hi">131%</td></tr>
+            <tr><td><span class="name">250627_올킬얼른가져가세요</span><span class="prod">닥터블릿 올킬세트</span></td><td class="n">1,082만</td><td class="n rev-cell">1,255만<span class="bar" style="width:43%"></span></td><td class="n roas-hi">116%</td></tr>
+            <tr><td><span class="name">260422_어서이소비텍신</span><span class="prod">소우코우 이소비텍신</span></td><td class="n">1,274만</td><td class="n rev-cell">1,231만<span class="bar" style="width:42%"></span></td><td class="n">97%<span class="prod">간접 포함 160%</span></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <div class="work-media" style="min-height:380px;">
-      <iframe
-        src="https://www.youtube.com/embed/zPrBQncpYpE?autoplay=1&mute=1&loop=1&playlist=zPrBQncpYpE&controls=0&modestbranding=1&rel=0"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-        style="width:100%;height:100%;min-height:380px;display:block;">
-      </iframe>
-    </div>
-  </div>
 
-  <!-- 04 AI 개인 채널 -->
-  <div class="work-entry">
-    <div class="work-left">
+    <ul class="notes">
+      <li>오래 팔린 소재</li>
+      <li>
+        <ul>
+          <li>다프모아모아는 19개 주차에 걸쳐 팀의 고효율 소재로 기록됐습니다. 고효율 기준은 그 주 ROAS 100% 이상, 매출 50만 원 이상입니다.</li>
+          <li>닥터블릿 고효율 소재 매출 기준으로 제작자 34명 가운데 5위입니다.</li>
+          <li>광고비를 100만 원 이상 쓴 소재 90편 중 58편이 직접 전환만으로 ROAS 100%를 넘겼습니다.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p class="source">기준: 사내 광고 성과 리포트와 고효율 소재 주간 기록, 2025년 2월부터 2026년 10월까지 이후빈 제작 소재만 집계. 2026년 3월까지는 고효율로 기록된 주간 성과이고, 2026년 4월 이후 소우코우 소재는 전체 집행 성과입니다. 매출은 별도 표기가 없으면 직접 전환 기준입니다.</p>
+  </section>
+
+  <section id="work" aria-labelledby="work-title">
+    <div class="sec-head">
+      <h2 id="work-title">작업</h2>
+      <p class="lede">광고 영상, 브랜드 영상, 제품 컷을 생성형 AI로 만듭니다. 모델도, 스튜디오도 따로 섭외하지 않습니다.</p>
+    </div>
+
+    <div class="videos">
+      <figure class="video wide">
+        <button class="player" type="button" data-yt="PoFNH6dG_gw" aria-label="건강기능식품 광고 모음 영상 재생">
+          <img src="https://i.ytimg.com/vi/PoFNH6dG_gw/hqdefault.jpg" alt="" loading="lazy">
+          <span class="play">재생</span>
+        </button>
+        <figcaption><b>건강기능식품 광고 모음</b><span>닥터블릿헬스케어에서 집행한 커머스 광고를 가로 화면으로 엮었습니다. <a href="https://www.youtube.com/playlist?list=PL2j9wLyZmlhxlLXsoZ20-dTJP9BfHoaUP" target="_blank" rel="noopener">재생목록 전체 보기</a></span></figcaption>
+      </figure>
+      <figure class="video">
+        <button class="player" type="button" data-yt="Z6acP6sND78" aria-label="플로네아 홈페이지 영상 재생">
+          <img src="https://i.ytimg.com/vi/Z6acP6sND78/hqdefault.jpg" alt="" loading="lazy">
+          <span class="play">재생</span>
+        </button>
+        <figcaption><b>플로네아 홈페이지 영상</b><span>브랜드 홈페이지 첫 화면에 쓰인 AI 영상입니다.</span></figcaption>
+      </figure>
+      <figure class="video">
+        <button class="player" type="button" data-yt="aJr4oQIX3lA" aria-label="AI 영상 작업 재생">
+          <img src="https://i.ytimg.com/vi/aJr4oQIX3lA/hqdefault.jpg" alt="" loading="lazy">
+          <span class="play">재생</span>
+        </button>
+        <figcaption><b>개인 AI 영상 작업</b><span>새 도구를 먼저 실험해 보는 채널입니다. <a href="https://www.instagram.com/aihubin/" target="_blank" rel="noopener">인스타그램 @aihubin</a></span></figcaption>
+      </figure>
+    </div>
+
+    <div class="stills">
+      <div class="block-title" style="grid-column:1/-1"><h3>AI 생성 광고 이미지</h3></div>
+      <figure><img src="ai-02.jpg" alt="초록 배경에서 데일리버닝 제품을 든 모델 광고 이미지" loading="lazy"><figcaption>푸응 데일리버닝 광고 컷</figcaption></figure>
+      <figure><img src="ai-03.jpg" alt="분홍 배경에서 팻버닝 제품을 들고 웃는 모델 광고 이미지" loading="lazy"><figcaption>푸응 팻버닝 광고 컷</figcaption></figure>
+      <figure><img src="ai-05.png" alt="린넨 천 위에 놓인 세럼 병과 반지, 마른 꽃 이미지" loading="lazy"><figcaption>세럼 제품 컷, 정물 연출</figcaption></figure>
+      <figure class="land"><img src="ai-01.png" alt="린넨 천 위에서 두 손으로 세럼 병을 감싼 제품 이미지" loading="lazy"><figcaption>세럼 제품 컷, 손 연출</figcaption></figure>
+      <figure class="land"><img src="ai-04.jpg" alt="보라색 니트를 입은 모델이 제품 상자를 볼에 대고 웃는 광고 이미지" loading="lazy"><figcaption>다이어트 제품 모델 컷</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="process" aria-labelledby="process-title">
+    <div class="sec-head">
+      <h2 id="process-title">제작 방식</h2>
+      <p class="lede">촬영을 생성으로 바꾸고 제작비를 80% 줄였습니다. 대본부터 집행 후 수정까지 혼자 돌리는 순서입니다.</p>
+    </div>
+    <ol class="steps">
+      <li><span class="what">대본</span><span class="tools">ChatGPT, Claude</span><span class="how">첫 3초 후킹을 네 가지 유형 중에서 고르고, 1분 영상은 450~550자로 씁니다.</span></li>
+      <li><span class="what">이미지 생성</span><span class="tools">GPT Image, Nano Banana</span><span class="how">모델 컷과 제품 컷을 만들고, 영상에 쓸 키프레임을 같은 구도로 맞춥니다.</span></li>
+      <li><span class="what">영상 생성</span><span class="tools">Seedance, Kling AI, Veo 3</span><span class="how">키프레임 5~6장으로 끊김 없는 30초 장면을 만듭니다.</span></li>
+      <li><span class="what">목소리</span><span class="tools">ElevenLabs</span><span class="how">내레이션과 모델 대사를 입힙니다.</span></li>
+      <li><span class="what">편집</span><span class="tools">CapCut, Premiere Pro</span><span class="how">한글 자막과 가격 정보는 생성하지 않고 편집에서 정확하게 얹습니다.</span></li>
+      <li><span class="what">집행과 수정</span><span class="tools">메타, 유튜브, 틱톡, 구글</span><span class="how">매주 ROAS를 확인하고, 잘 팔린 소재는 후킹만 바꾼 변형을 바로 만듭니다.</span></li>
+    </ol>
+  </section>
+
+  <section id="career" aria-labelledby="career-title">
+    <div class="sec-head">
+      <h2 id="career-title">경력</h2>
+      <p class="lede">헬스케어, 뷰티, 소비재 광고를 4년 넘게 기획하고 찍고 편집했습니다.</p>
+    </div>
+    <ul class="career">
+      <li><span class="when">2025.02 ~ 현재</span><div><p class="co">닥터블릿헬스케어</p><p class="role">영상 PD, AI 워크플로 리드</p><p>닥터블릿, 푸응, 소우코우, 패칫, 플로네아 광고를 만들었습니다. 사내에 AI 영상 제작 방식을 도입하고 팀 교육을 맡았습니다.</p></div></li>
+      <li><span class="when">2024.01 ~ 2025.01</span><div><p class="co">마일스톤컴퍼니</p><p class="role">영상 PD</p><p>lululemon Korea 공식 인스타그램 콘텐츠를 월 4건씩 기획, 촬영, 편집해 KPI 200%를 달성했습니다.</p></div></li>
+      <li><span class="when">2023.05 ~ 2023.11</span><div><p class="co">데일리뉴스</p><p class="role">영상 디자이너</p><p>유튜브 채널 3개를 동시에 운영했고, 종합시사매거진 매출을 87% 늘렸습니다.</p></div></li>
+      <li><span class="when">2022.06 ~ 2022.12</span><div><p class="co">엔피프틴파트너스</p><p class="role">프로그램 기획</p><p>중소벤처기업부, 한국관광공사, KCDF 지원사업 3건을 운영했습니다.</p></div></li>
+      <li><span class="when">2021.12 ~ 2022.06</span><div><p class="co">제이비컴스컴퍼니</p><p class="role">콘텐츠 기획</p><p>신한라이프 유튜브 채널 기획과 편집에 참여했고, 구독자 8만 명을 달성했습니다.</p></div></li>
+    </ul>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="contact">
+      <img class="portrait" src="profile.jpg" alt="이후빈 프로필 사진" loading="lazy">
       <div>
-        <p class="work-idx">04</p>
-        <p class="work-co">Personal · @aihubin</p>
-        <h3 class="work-title">AI 콘텐츠 채널</h3>
-        <div class="work-tags">
-          <span class="work-tag">AI</span>
-          <span class="work-tag">Short-form</span>
-        </div>
-      </div>
-      <div class="work-meta-bottom">
-        <p class="work-year">2024 — 현재</p>
-        <p style="font-size:11px;color:var(--accent);margin-bottom:8px;letter-spacing:.03em;">더 많은 영상은 아래 링크에서 확인하세요</p>
-        <a class="work-link" href="https://www.instagram.com/aihubin/" target="_blank">
-          Instagram에서 보기
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2V8"/></svg>
-        </a>
+        <h2 id="contact-title" style="margin-bottom:24px">연락</h2>
+        <a class="mail" href="mailto:gnqls96@gmail.com">gnqls96@gmail.com</a>
+        <ul class="links">
+          <li><span>전화</span><a href="tel:010-6626-9374">010-6626-9374</a></li>
+          <li><span>인스타그램</span><a href="https://www.instagram.com/aihubin/" target="_blank" rel="noopener">@aihubin</a></li>
+          <li><span>유튜브</span><a href="https://youtube.com/@HUSTV_official" target="_blank" rel="noopener">@HUSTV_official</a></li>
+        </ul>
       </div>
     </div>
-    <div class="work-media" style="min-height:380px;">
-      <iframe
-        src="https://www.youtube.com/embed/aJr4oQIX3lA?autoplay=1&mute=1&loop=1&playlist=aJr4oQIX3lA&controls=0&modestbranding=1&rel=0"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-        style="width:100%;height:100%;min-height:380px;display:block;">
-      </iframe>
-    </div>
-  </div>
-
-  <!-- 05 AI 이미지 제작 -->
-  <div class="work-entry">
-    <div class="work-left">
-      <div>
-        <p class="work-idx">05</p>
-        <p class="work-co">AI Image Work</p>
-        <h3 class="work-title">AI 이미지 제작</h3>
-        <div class="work-tags">
-          <span class="work-tag">AI Image</span>
-          <span class="work-tag">Generative</span>
-        </div>
-      </div>
-      <div class="work-meta-bottom">
-        <p class="work-year">2024 — 현재</p>
-      </div>
-    </div>
-    <div class="work-media" style="min-height:500px;background:#111;position:relative;">
-      <div class="img-slider" id="slider05">
-        <img src="ai-01.png" alt="AI 이미지 1" class="slide active">
-        <img src="ai-02.jpg" alt="AI 이미지 2" class="slide">
-        <img src="ai-03.jpg" alt="AI 이미지 3" class="slide">
-        <img src="ai-04.jpg" alt="AI 이미지 4" class="slide">
-        <img src="ai-05.png" alt="AI 이미지 5" class="slide">
-      </div>
-      <button class="slider-prev" onclick="moveSlide(-1)">&#8592;</button>
-      <button class="slider-next" onclick="moveSlide(1)">&#8594;</button>
-    </div>
-  </div>
-
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="rev">
-    <h2 class="about-big">말보다 결과로 <em>증명합니다.</em></h2>
-    <p class="about-body">
-      총 3년 9개월 경력의 영상 PD입니다. 광고 영상 기획부터 촬영·편집까지 전 과정을 1인으로 담당하며, <b>Veo 3·Kling AI·Nano banana</b> 등 최신 AI 툴을 실무에 직접 도입해 제작비를 <b>80% 절감</b>했습니다.<br><br>
-      lululemon Korea, 신한라이프 등 글로벌·대형 브랜드부터 헬스케어 D2C까지 다양한 업종에서 실질적인 비즈니스 성과를 만들어왔습니다.
-    </p>
-  </div>
-  <div class="rev">
-    <div class="sk-row"><span class="sk-name">Veo 3</span><span class="sk-lv on">Expert</span></div>
-    <div class="sk-row"><span class="sk-name">Kling AI</span><span class="sk-lv on">Expert</span></div>
-    <div class="sk-row"><span class="sk-name">Nano banana</span><span class="sk-lv on">Expert</span></div>
-    <div class="sk-row"><span class="sk-name">ComfyUI / FLUX</span><span class="sk-lv on">Expert</span></div>
-    <div class="sk-row"><span class="sk-name">Figma Weave</span><span class="sk-lv on">Expert</span></div>
-    <div class="sk-row"><span class="sk-name">ChatGPT / Claude / Gemini</span><span class="sk-lv on">Expert</span></div>
-    <div class="sk-row"><span class="sk-name">Adobe Premiere Pro</span><span class="sk-lv on">Expert</span></div>
-    <div class="sk-row"><span class="sk-name">CapCut</span><span class="sk-lv on">Expert</span></div>
-    <div class="sk-row"><span class="sk-name">After Effects</span><span class="sk-lv">Advanced</span></div>
-    <div class="sk-row"><span class="sk-name">촬영 · 연출</span><span class="sk-lv on">Expert</span></div>
-    <div class="sk-row"><span class="sk-name">광고 기획 · 스크립팅</span><span class="sk-lv on">Expert</span></div>
-    <div class="sk-row"><span class="sk-name">ElevenLabs</span><span class="sk-lv">Advanced</span></div>
-  </div>
-</section>
-
-<!-- CAREER -->
-<section id="career">
-  <div class="sec-header rev">
-    <span class="sec-label">Career</span>
-    <span class="sec-num">02</span>
-  </div>
-  <div class="career-entry">
-    <p class="c-period">2025.02 — 현재</p>
-    <div><p class="c-co">닥터블릿헬스케어</p><p class="c-role">Video Producer · AI Workflow Lead</p><p class="c-desc">헬스케어·뷰티 브랜드 광고 영상 전 과정. AI 도입 촬영비 80% 절감. 사내 AI 워크플로우 교육 주도.</p></div>
-    <div class="c-kpi"><span class="kpi-n">7.4억</span><span class="kpi-l">연 매출 기여</span></div>
-  </div>
-  <div class="career-entry">
-    <p class="c-period">2024.01 — 2025.01</p>
-    <div><p class="c-co">마일스톤컴퍼니</p><p class="c-role">Video Producer · SNS Manager</p><p class="c-desc">lululemon Korea 공식 Instagram, Y FUND YouTube 채널 운영. 기획·촬영·편집 1인 처리.</p></div>
-    <div class="c-kpi"><span class="kpi-n">200%</span><span class="kpi-l">KPI 달성</span></div>
-  </div>
-  <div class="career-entry">
-    <p class="c-period">2023.05 — 2023.11</p>
-    <div><p class="c-co">데일리뉴스</p><p class="c-role">Video Designer</p><p class="c-desc">뉴스·시사·경제 유튜브 채널 3개 동시 운영. 뉴스·인터뷰·애니메이션·인포그래픽 전 포맷 제작.</p></div>
-    <div class="c-kpi"><span class="kpi-n">87%</span><span class="kpi-l">매거진 매출 성장</span></div>
-  </div>
-  <div class="career-entry">
-    <p class="c-period">2022.06 — 2022.12</p>
-    <div><p class="c-co">엔피프틴파트너스</p><p class="c-role">Program Planner</p><p class="c-desc">중소벤처기업부·KCDF 정부지원 스타트업 육성 프로그램 기획·운영.</p></div>
-    <div class="c-kpi"><span class="kpi-n">3개</span><span class="kpi-l">지원 사업</span></div>
-  </div>
-  <div class="career-entry">
-    <p class="c-period">2021.12 — 2022.06</p>
-    <div><p class="c-co">제이비컴스컴퍼니</p><p class="c-role">Content Planner</p><p class="c-desc">신한라이프 멀티채널 콘텐츠 기획·광고 집행. 유튜브 구독자 8만 명, KPI 200% 달성.</p></div>
-    <div class="c-kpi"><span class="kpi-n">8만</span><span class="kpi-l">유튜브 구독자</span></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="rev">
-    <h2 class="contact-big">함께할 기회를<br>주신다면 <em>최선을<br>다하겠습니다.</em></h2>
-    <p class="contact-sub">맡겨주신 역할에 끝까지 책임을 다하는 것이<br>저의 일하는 방식입니다.</p>
-  </div>
-  <div class="clinks rev">
-    <a class="clink" href="mailto:gnqls96@gmail.com">
-      <span class="clink-l">Email</span><span class="clink-v">gnqls96@gmail.com</span><span class="clink-arr">→</span>
-    </a>
-    <a class="clink" href="https://instagram.com/aihubin" target="_blank">
-      <span class="clink-l">AI Instagram</span><span class="clink-v">@aihubin</span><span class="clink-arr">→</span>
-    </a>
-    <a class="clink" href="https://youtube.com/@HUSTV_official" target="_blank">
-      <span class="clink-l">YouTube</span><span class="clink-v">@HUSTV_official</span><span class="clink-arr">→</span>
-    </a>
-    <a class="clink" href="tel:010-6626-9374">
-      <span class="clink-l">Phone</span><span class="clink-v">010-6626-9374</span><span class="clink-arr">→</span>
-    </a>
-  </div>
-</section>
+  </section>
+</main>
 
 <footer>
-  <p>© 2026 Lee Hubin. All rights reserved.</p>
-  <p>Seoul, South Korea</p>
+  <span>© 2026 이후빈</span>
+  <span>서울</span>
 </footer>
 
 <script>
-// 슬라이더
-let current = 0;
-const slides = document.querySelectorAll('.img-slider .slide');
-function moveSlide(dir) {
-  slides[current].classList.remove('active');
-  current = (current + dir + slides.length) % slides.length;
-  slides[current].classList.add('active');
-}
-// 자동 슬라이드
-setInterval(() => moveSlide(1), 3000);
-
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-}, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
-document.querySelectorAll('.rev, .work-entry, .career-entry').forEach(el => io.observe(el));
+document.querySelectorAll('.player').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var id = btn.getAttribute('data-yt');
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1';
+    f.title = btn.getAttribute('aria-label').replace(' 재생', '');
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    var box = document.createElement('div');
+    box.className = 'player';
+    box.appendChild(f);
+    btn.replaceWith(box);
+    f.focus();
+  });
+});
 </script>
 </body>
 </html>
