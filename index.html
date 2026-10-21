@@ -137,6 +137,26 @@ h2 { margin: 0; font-weight: 600; font-size: clamp(34px, 4.6vw, 72px); line-heig
 .film figcaption b { font-weight: 600; }
 .film figcaption span { color: var(--fg-2); }
 
+/* ---------- Shorts ---------- */
+.shorts-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin: clamp(56px, 7vw, 96px) 0 20px; }
+.shorts-head h3 { margin: 0; font-size: clamp(22px, 2vw, 30px); font-weight: 600; letter-spacing: -0.02em; }
+.shorts-head p { margin: 0; font-size: 13px; }
+.shorts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px) clamp(10px, 1.4vw, 20px); }
+.short { margin: 0; }
+.player.tall { aspect-ratio: 9 / 16; }
+.short figcaption { padding-top: 12px; display: flex; flex-direction: column; gap: 2px; }
+.short figcaption b { font-weight: 600; font-size: 15px; line-height: 1.4; }
+.short figcaption span { color: var(--fg-2); font-size: 13px; line-height: 1.5; }
+.short figcaption .m { color: var(--fg); font-size: 13px; }
+.short figcaption .m b { font-size: 13px; }
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); margin-top: clamp(56px, 7vw, 96px); }
+.trio .film figcaption { grid-template-columns: 1fr; gap: 2px; }
+.player .play { background: rgba(21, 17, 14, .7); padding: 6px 12px; border: 0; border-radius: 999px; }
+@media (max-width: 960px) {
+  .shorts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .trio { grid-template-columns: 1fr; }
+}
+
 /* ---------- Pipeline ---------- */
 .pipe { list-style: none; margin: 0; padding: 0; counter-reset: s; border-top: 1px solid var(--line); }
 .pipe li { counter-increment: s; display: grid; grid-template-columns: 56px minmax(0, 3fr) minmax(0, 3fr) minmax(0, 6fr); gap: 16px; padding: 26px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
@@ -277,29 +297,85 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 26px
   <section id="films" aria-labelledby="films-title">
     <div class="head">
       <h2 id="films-title">움직이는 광고</h2>
-      <p>생성한 이미지를 키프레임으로 써서 장면을 잇고, 목소리와 자막을 얹어 실제 집행용 광고로 완성합니다.</p>
+      <p>생성한 이미지를 키프레임으로 써서 장면을 잇고, 목소리와 자막을 얹어 실제 집행용 광고로 완성합니다. 아래 영상은 모두 실제로 집행한 광고입니다.</p>
     </div>
-    <div class="films">
       <figure class="film wide">
         <button class="player" type="button" data-yt="PoFNH6dG_gw" aria-label="건강기능식품 광고 모음 재생">
-          <img src="https://i.ytimg.com/vi/PoFNH6dG_gw/hqdefault.jpg" alt="">
-          <span class="pt">건강기능식품 광고 모음</span><span class="play">재생</span>
+          <img src="posters/PoFNH6dG_gw.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play">재생</span>
         </button>
-        <figcaption><b>건강기능식품 광고 모음</b><span>닥터블릿헬스케어에서 집행한 커머스 광고를 가로 화면으로 엮었습니다. <a href="https://www.youtube.com/playlist?list=PL2j9wLyZmlhxlLXsoZ20-dTJP9BfHoaUP" target="_blank" rel="noopener">재생목록 전체 보기</a></span></figcaption>
+        <figcaption><b>건강기능식품 광고 모음</b><span>닥터블릿헬스케어에서 집행한 커머스 광고를 가로 화면으로 엮었습니다. <a href="https://www.youtube.com/playlist?list=PL2j9wLyZmlhxlLXsoZ20-dTJP9BfHoaUP" target="_blank" rel="noopener">재생목록 33편 전체 보기</a></span></figcaption>
       </figure>
+
+    <div class="shorts-head"><h3>집행한 숏폼 광고</h3><p class="dim">소재명과 성과는 사내 광고 관리 시트 기준입니다.</p></div>
+    <div class="shorts">
+        <figure class="short">
+          <button class="player tall" type="button" data-yt="kI0o8Z4dm08" aria-label="한포끝 광고 재생">
+            <img src="posters/kI0o8Z4dm08.jpg" alt="" loading="lazy" width="405" height="720"><span class="play">재생</span>
+          </button>
+          <figcaption><b>한포끝</b><span>트리플CD</span><span class="m">직접 ROAS <b class="hl">150%</b> · 간접 318%</span></figcaption>
+        </figure>
+        <figure class="short">
+          <button class="player tall" type="button" data-yt="8rv-LWuI5fU" aria-label="우주최저가도전 광고 재생">
+            <img src="posters/8rv-LWuI5fU.jpg" alt="" loading="lazy" width="405" height="720"><span class="play">재생</span>
+          </button>
+          <figcaption><b>우주최저가도전</b><span>트리플CD</span><span class="m">직접 ROAS <b class="hl">120%</b> · 간접 249%</span></figcaption>
+        </figure>
+        <figure class="short">
+          <button class="player tall" type="button" data-yt="I6VnSBOIOUE" aria-label="썸머블프 광고 재생">
+            <img src="posters/I6VnSBOIOUE.jpg" alt="" loading="lazy" width="405" height="720"><span class="play">재생</span>
+          </button>
+          <figcaption><b>트리플시디는이소비텍신을좋아해</b><span>이소비텍신 × 트리플CD 썸머 프로모션</span><span class="m">직접 ROAS <b class="hl">102%</b> · 매출 1,731만</span></figcaption>
+        </figure>
+        <figure class="short">
+          <button class="player tall" type="button" data-yt="C3LuS3HklOo" aria-label="트리플CD 85% 할인 광고 재생">
+            <img src="posters/C3LuS3HklOo.jpg" alt="" loading="lazy" width="405" height="720"><span class="play">재생</span>
+          </button>
+          <figcaption><b>3중 지방 파괴 특가</b><span>트리플CD 할인 소구</span></figcaption>
+        </figure>
+        <figure class="short">
+          <button class="player tall" type="button" data-yt="73rnwtz-xHc" aria-label="트리플CD 가격 협상 광고 재생">
+            <img src="posters/73rnwtz-xHc.jpg" alt="" loading="lazy" width="405" height="720"><span class="play">재생</span>
+          </button>
+          <figcaption><b>쫌 깎아주시죠</b><span>트리플CD 가격 소구</span></figcaption>
+        </figure>
+        <figure class="short">
+          <button class="player tall" type="button" data-yt="RxxmhAb-KoU" aria-label="공복 16시간 광고 재생">
+            <img src="posters/RxxmhAb-KoU.jpg" alt="" loading="lazy" width="405" height="720"><span class="play">재생</span>
+          </button>
+          <figcaption><b>하루 한 알 = 공복 16시간</b><span>소우코우 이소비텍신</span></figcaption>
+        </figure>
+        <figure class="short">
+          <button class="player tall" type="button" data-yt="l_ojyF92mLM" aria-label="애니메이션 광고 재생">
+            <img src="posters/l_ojyF92mLM.jpg" alt="" loading="lazy" width="405" height="720"><span class="play">재생</span>
+          </button>
+          <figcaption><b>일본 애니메이션 광고</b><span>소우코우 이소비텍신, 전 장면 생성</span></figcaption>
+        </figure>
+        <figure class="short">
+          <button class="player tall" type="button" data-yt="2mcQxOwIXsM" aria-label="파비플로라 광고 재생">
+            <img src="posters/2mcQxOwIXsM.jpg" alt="" loading="lazy" width="405" height="720"><span class="play">재생</span>
+          </button>
+          <figcaption><b>파비플로라 한 알</b><span>닥터블릿 파비플로라</span></figcaption>
+        </figure>
+    </div>
+
+    <div class="trio">
       <figure class="film">
         <button class="player" type="button" data-yt="Z6acP6sND78" aria-label="플로네아 홈페이지 영상 재생">
-          <img src="https://i.ytimg.com/vi/Z6acP6sND78/hqdefault.jpg" alt="">
-          <span class="pt">플로네아 홈페이지 영상</span><span class="play">재생</span>
+          <img src="posters/Z6acP6sND78.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play">재생</span>
         </button>
-        <figcaption><b>플로네아 홈페이지</b><span>브랜드 홈페이지 첫 화면에 쓰인 AI 영상입니다.</span></figcaption>
+        <figcaption><b>플로네아 홈페이지</b><span>브랜드 홈페이지 첫 화면에 쓰인 AI 영상</span></figcaption>
       </figure>
       <figure class="film">
         <button class="player" type="button" data-yt="aJr4oQIX3lA" aria-label="개인 AI 영상 작업 재생">
-          <img src="https://i.ytimg.com/vi/aJr4oQIX3lA/hqdefault.jpg" alt="">
-          <span class="pt">개인 AI 영상 작업</span><span class="play">재생</span>
+          <img src="posters/aJr4oQIX3lA.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play">재생</span>
         </button>
-        <figcaption><b>개인 작업</b><span>새 도구를 먼저 실험하는 채널입니다. <a href="https://www.instagram.com/aihubin/" target="_blank" rel="noopener">@aihubin</a></span></figcaption>
+        <figcaption><b>개인 AI 작업</b><span>새 도구를 먼저 실험하는 채널 <a href="https://www.instagram.com/aihubin/" target="_blank" rel="noopener">@aihubin</a></span></figcaption>
+      </figure>
+      <figure class="film">
+        <button class="player" type="button" data-yt="zPrBQncpYpE" aria-label="lululemon 영상 재생">
+          <img src="posters/zPrBQncpYpE.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play">재생</span>
+        </button>
+        <figcaption><b>lululemon Korea</b><span>직접 기획, 촬영, 편집한 브랜드 콘텐츠 <a href="https://www.instagram.com/lululemonkr/reels/" target="_blank" rel="noopener">인스타그램</a></span></figcaption>
       </figure>
     </div>
   </section>
