@@ -483,7 +483,7 @@ document.querySelectorAll('.player').forEach(function (btn) {
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     f.allowFullscreen = true;
     var box = document.createElement('div');
-    box.className = 'player';
+    box.className = btn.className;
     box.appendChild(f);
     btn.replaceWith(box);
     f.focus();
