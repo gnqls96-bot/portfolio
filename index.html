@@ -146,11 +146,15 @@ h2 { margin: 0; font-weight: 600; font-size: clamp(34px, 4.6vw, 72px); line-heig
 .short figcaption .m { color: var(--fg); font-size: 13px; }
 .short figcaption .m b { font-size: 13px; }
 .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); margin-top: clamp(56px, 7vw, 96px); }
+.ai-more { display: grid; grid-template-columns: 3.16fr 1fr 1fr; gap: clamp(14px, 1.6vw, 24px); margin-top: clamp(32px, 4vw, 56px); align-items: start; }
+.ai-more .film figcaption { grid-template-columns: 1fr; gap: 2px; }
 .trio .film figcaption { grid-template-columns: 1fr; gap: 2px; }
 .player .play { background: rgba(21, 17, 14, .7); padding: 6px 12px; border: 0; border-radius: 999px; }
 @media (max-width: 960px) {
   .shorts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .trio { grid-template-columns: 1fr; }
+  .ai-more { grid-template-columns: 1fr 1fr; }
+  .ai-more .film:first-child { grid-column: 1 / -1; }
 }
 
 /* ---------- Pipeline ---------- */
@@ -296,6 +300,26 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 26px
           <img src="posters/yj5wO_Sqp6c.jpg" alt="" loading="lazy"><span class="play">재생</span>
         </button>
         <figcaption><b>AI 인서트 영상</b><span>광고 중간에 넣는 짧은 장면을 생성으로 만들었습니다</span></figcaption>
+      </figure>
+    </div>
+    <div class="ai-more">
+      <figure class="film">
+        <button class="player" type="button" data-yt="dWX-JgY_7L8" aria-label="칼로 EMS 슬림코어 벨트 재생">
+          <img src="posters/dWX-JgY_7L8.jpg" alt="" loading="lazy"><span class="play">재생</span>
+        </button>
+        <figcaption><b>칼로 EMS 슬림코어 벨트</b><span>제품만으로 끌고 가는 1분짜리 AI 제품 필름</span></figcaption>
+      </figure>
+      <figure class="film">
+        <button class="player tall" type="button" data-yt="KaDZP10ZmBY" aria-label="트리플CD 모델 광고 재생">
+          <img src="posters/KaDZP10ZmBY.jpg" alt="" loading="lazy"><span class="play">재생</span>
+        </button>
+        <figcaption><b>트리플CD 모델 광고</b><span>인물과 카페 장면을 모두 생성한 광고</span></figcaption>
+      </figure>
+      <figure class="film">
+        <button class="player tall" type="button" data-yt="VD0v_RP2IEM" aria-label="트리플CD 특가 광고 재생">
+          <img src="posters/VD0v_RP2IEM.jpg" alt="" loading="lazy"><span class="play">재생</span>
+        </button>
+        <figcaption><b>트리플CD 특가 광고</b><span>트럭에서 쏟아지는 제품 장면을 생성</span></figcaption>
       </figure>
     </div>
   </section>
