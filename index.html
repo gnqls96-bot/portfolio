@@ -114,6 +114,8 @@ h2 { margin: 0; font-weight: 600; font-size: clamp(34px, 4.6vw, 72px); line-heig
 .g-row + .g-row { margin-top: clamp(28px, 3vw, 48px); }
 .g-row figure { margin: 0; flex: var(--r) 1 0; min-width: 0; }
 .g-row img { width: 100%; }
+.g-label { margin: clamp(56px, 6vw, 96px) 0 18px; font-size: 15px; color: var(--fg-2); }
+.g-label + .g-row { margin-top: 0; }
 .g-row figcaption { padding-top: 12px; font-size: 13px; color: var(--fg-2); }
 
 /* ---------- Films ---------- */
@@ -208,6 +210,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 26px
   .g-row { flex-wrap: wrap; }
   .g-row figure { flex: 1 1 calc(50% - 10px); }
   .g-row figure.solo { flex-basis: 100%; }
+  .g-five figure { flex: 0 0 calc((100% - 20px) / 3); }
   th, td { padding: 13px 8px 13px 0; font-size: 14px; }
   td.n, th.n { padding-left: 8px; }
 }
@@ -259,6 +262,14 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 26px
     <div class="g-row">
       <figure class="solo" style="--r:1.5"><img src="ai-01.png" alt="두 손으로 세럼 병을 감싼 제품 이미지" width="1536" height="1024" loading="lazy"><figcaption>세럼 핸드 컷</figcaption></figure>
       <figure class="solo" style="--r:1.78"><img src="ai-04.jpg" alt="보라색 니트를 입은 모델이 제품 상자를 볼에 대고 웃는 광고" width="1920" height="1080" loading="lazy"><figcaption>닥터블릿 모델 컷</figcaption></figure>
+    </div>
+    <p class="g-label">건강기능식품이 아니어도 같은 방식으로 만듭니다. 칼로 수면 기기·자석 밴드 광고 이미지.</p>
+    <div class="g-row g-five">
+      <figure style="--r:.56"><img src="calo-01.jpg" alt="밤하늘과 달을 배경으로 떠 있는 노란 이지슬립 수면 기기 광고" width="900" height="1611" loading="lazy"><figcaption>칼로 이지슬립 메인</figcaption></figure>
+      <figure style="--r:.56"><img src="calo-02.jpg" alt="트럭에서 쏟아지는 이지슬립 제품과 60% 할인 문구 광고" width="900" height="1611" loading="lazy"><figcaption>칼로 이지슬립 특가</figcaption></figure>
+      <figure style="--r:.56"><img src="calo-03.jpg" alt="오픈카 운전자의 손목에 전류 효과가 흐르는 자석 밴드 광고" width="900" height="1611" loading="lazy"><figcaption>칼로 손목 자석 밴드</figcaption></figure>
+      <figure style="--r:.56"><img src="calo-04.jpg" alt="기기를 쥐고 잠든 여성과 제품 이미지 광고" width="900" height="1611" loading="lazy"><figcaption>칼로 이지슬립 수면 컷</figcaption></figure>
+      <figure style="--r:.56"><img src="calo-05.jpg" alt="노란 이지슬립 기기 세 개와 기능 문구 광고" width="900" height="1611" loading="lazy"><figcaption>칼로 이지슬립 제품 컷</figcaption></figure>
     </div>
   </section>
 
