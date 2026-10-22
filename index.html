@@ -59,21 +59,15 @@ td.up { color: var(--key); font-weight: 600; }
 .bar .right { justify-self: end; }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; height: 100svh; min-height: 600px; overflow: hidden; background: #000; }
-.reel { position: absolute; inset: 0; }
-.reel img { width: 100%; height: 100%; object-fit: cover; opacity: .82; }
-.reel iframe {
-  position: absolute; top: 50%; left: 50%; border: 0; pointer-events: none;
-  width: max(100%, 177.78svh); height: max(100%, 56.25vw); transform: translate(-50%, -50%);
+.hero {
+  position: relative; min-height: 92svh; display: flex; flex-direction: column; justify-content: center;
+  padding: 120px var(--gutter) clamp(48px, 8vh, 88px); background: var(--bg);
 }
-.hero::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to top, rgba(21, 17, 14, .92) 0%, rgba(21, 17, 14, .35) 42%, rgba(21, 17, 14, 0) 70%);
-}
-.hero-text {
-  position: absolute; z-index: 2; left: var(--gutter); right: var(--gutter); bottom: clamp(28px, 6vh, 64px);
-  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end;
-}
+.hero-me { display: flex; align-items: flex-end; gap: 18px; margin-bottom: clamp(28px, 5vh, 56px); }
+.hero-me img { width: clamp(92px, 8.5vw, 132px); aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; border-radius: 6px; }
+.hero-me p { margin: 0; line-height: 1.5; }
+.hero-me .who { font-size: 17px; font-weight: 600; }
+.hero-text { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end; }
 .hero h1 {
   margin: 0; font-weight: 600; font-size: clamp(40px, 6.4vw, 108px); line-height: 1.12; letter-spacing: -0.04em;
 }
@@ -185,7 +179,6 @@ tr.total td { font-weight: 700; }
 /* ---------- Contact ---------- */
 .contact { padding-bottom: clamp(56px, 7vw, 96px); }
 .contact-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(20px, 4vw, 72px); align-items: end; }
-.me-photo { width: min(240px, 100%); aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; }
 .big-mail { display: inline-block; font-size: clamp(28px, 4.4vw, 68px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; text-decoration: none; overflow-wrap: anywhere; }
 .big-mail:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 10px; }
 .links { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 40px; }
@@ -210,6 +203,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 26px
   .bar nav { display: none; }
   .hero-text { grid-template-columns: 1fr; }
   .hero-side { text-align: left; }
+  .hero { min-height: 0; padding-top: 110px; padding-bottom: 72px; }
   .films { grid-template-columns: 1fr; }
   .g-row { flex-wrap: wrap; }
   .g-row figure { flex: 1 1 calc(50% - 10px); }
@@ -235,14 +229,18 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 26px
 </header>
 
 <div class="hero" id="top">
-  <div class="reel" id="reel" data-yt="PoFNH6dG_gw">
-    <img src="ai-01.png" alt="두 손으로 세럼 병을 감싼 AI 생성 제품 이미지" width="1536" height="1024" fetchpriority="high">
+  <div class="hero-me">
+    <img src="profile.jpg" alt="이후빈 프로필 사진" width="1500" height="2000" fetchpriority="high">
+    <div>
+      <p class="who">이후빈</p>
+      <p class="small dim">AI 이미지·영상 광고 PD</p>
+    </div>
   </div>
   <div class="hero-text">
     <h1><span>찍지 않은 광고로</span><br><span><span class="hl">4억 5천만 원</span>을 팔았습니다</span></h1>
     <div class="hero-side small">
-      <p>AI 이미지·영상 광고 PD 이후빈</p>
-      <p class="dim">건강기능식품 커머스 광고 258편<br>2025—2026</p>
+      <p>건강기능식품 커머스 광고 258편</p>
+      <p class="dim">2025—2026</p>
     </div>
   </div>
 </div>
@@ -434,7 +432,7 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 26px
       <p>AI로 광고 제작 방식을 바꾸고 싶은 팀이라면 이야기 나누고 싶습니다.</p>
     </div>
     <div class="contact-grid">
-      <img class="me-photo" src="profile.jpg" alt="이후빈 프로필 사진" width="1500" height="2000" loading="lazy">
+      <div class="spacer" aria-hidden="true"></div>
       <div>
         <a class="big-mail" href="mailto:gnqls96@gmail.com">gnqls96@gmail.com</a>
         <ul class="links">
@@ -453,21 +451,6 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding: 26px
 </footer>
 
 <script>
-// 배경 쇼릴: 실제 사이트(github.io)에서만 유튜브 영상을 깔고, 그 외에는 이미지가 보입니다.
-(function () {
-  var reel = document.getElementById('reel');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reel || reduce || !/github\.io$/.test(location.hostname)) return;
-  var id = reel.getAttribute('data-yt');
-  var f = document.createElement('iframe');
-  f.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&mute=1&loop=1&playlist=' + id + '&controls=0&modestbranding=1&rel=0&playsinline=1';
-  f.title = '광고 쇼릴';
-  f.allow = 'autoplay; encrypted-media';
-  f.tabIndex = -1;
-  f.setAttribute('aria-hidden', 'true');
-  reel.appendChild(f);
-})();
-
 document.querySelectorAll('.player').forEach(function (btn) {
   var thumb = btn.querySelector('img');
   if (thumb) {
